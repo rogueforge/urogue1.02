@@ -828,3 +828,7 @@
 	things harder
 8)	costs of things re-arranged to reflect value to player more
 	accurately
+
+1.02	August 13, 85
+1)	being zapped by a breath weapon while not wearing armor causes
+	core dumps
