@@ -3,7 +3,7 @@
 /*
  * Now all the global variables
  */
-struct trap traps[MAXTRAPS];
+struct trap traps[MAXTRAPS+MAXTRAPS];	/* twice as much for special effects */
 struct room rooms[MAXROOMS];		/* One for each room -- A level */
 struct room *oldrp;			/* Roomin(&player.t_oldpos) */
 struct thing player;			/* The rogue */

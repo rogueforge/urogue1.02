@@ -812,10 +812,14 @@ at_hero:
 				    cur_weapon->o_flags |= ISZAPPED;
 				    cur_weapon->o_charges += (10 + rnd(15));
 				}
-				if (cur_weapon != NULL)
+				if (cur_weapon != NULL && cur_armor != NULL)
 				    msg("Your armor and %s are covered with dancing blue lights!", weaps[cur_weapon->o_which].w_name);
-				else
+				else if (cur_armor != NULL)
 				    msg("Your armor is covered with dancing blue lights!");
+				else if (cur_weapon != NULL)
+				    msg("Your %s is covered with dancing blue lights!", weaps[cur_weapon->o_which].w_name);
+				else
+				    msg("You are momentarily covered with dancing blue lights.");
 		       	}
 			else if(ISWEARING(R_FIRERESIST) &&
 				(strcmp(name, "flame") == 0)) {

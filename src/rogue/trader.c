@@ -196,6 +196,8 @@ sell_it()
 	    }
 	} until (ch == 'y');
 	mpos = 0;
+	if (obj->o_type != ARTIFACT)
+	    obj->o_tradevalue = wo;
 	if (drop(item) == TRUE) {		/* drop this item */	
 	    purse += wo;			/* give him his money */
 	    ++trader;				/* another transaction */

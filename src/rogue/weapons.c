@@ -152,7 +152,7 @@ fall(item, pr)
 	    return;
 	}
 	else if (fallpos(&obj->o_pos, &fpos, TRUE)) {
-		if (obj->o_flags & CANBURN && ntraps + 1 < MAXTRAPS) {
+		if (obj->o_flags & CANBURN && ntraps + 1 < MAXTRAPS + MAXTRAPS) {
 		    mvaddch(fpos.y, fpos.x, FIRETRAP);
 		    traps[ntraps].tr_type = FIRETRAP;
 		    traps[ntraps].tr_flags = ISFOUND;

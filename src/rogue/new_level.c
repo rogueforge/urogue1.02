@@ -217,7 +217,7 @@
  	}
      }
  
-     if (cur_armor->o_which == MITHRIL) {
+     if (cur_armor != NULL && cur_armor->o_which == MITHRIL) {
  	register bool greed = FALSE;
  	for (item = mlist; item != NULL; item = next(item)) {
  	    tp = (struct thing *) ldata(item);

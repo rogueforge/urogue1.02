@@ -40,8 +40,8 @@ TUNABLE=../tunable.o
 LDFLAGS=
 CFLAGS= -O
 
-$(PROGRAM):	$(HDRS) $(OBJS)	$(TUNABLE)
-		$(CC) $(LDFLAGS) $(OBJS) $(TUNABLE) $(CRLIB) $(TERMLIB) -o $@
+$(PROGRAM):	$(LIB) $(TUNABLE)
+		$(CC) $(LDFLAGS) $(LIB) $(TUNABLE) $(CRLIB) $(TERMLIB) -o $@
 		@size $@
 		@echo $@ made.
 
@@ -62,7 +62,9 @@ tags:
 curses.h:	/usr/include/curses.h
 		ln -s /usr/include/curses.h
 
-distrib:	$(OBJS)
+distrib:	$(LIB)
+
+$(LIB):		$(HDRS) $(OBJS)
 		$(RM) $(LIB)
 		$(LD) -r -o $(LIB) $(OBJS) 
 

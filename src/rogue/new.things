@@ -677,3 +677,21 @@
 7)	fix tty characteristics when restoring a game
 8)	improved chances of taking it with you when you are resurrected
 9)	corrected author and SIGQUIT handling
+
+1.02 Beta June 10, 85
+1)	selling an object in a trading post marks the value in a private
+	location in case hero wants to buy it back
+2)	reduced slightly the chance of nasty side effects when using
+	artifacts
+3)	shattering armor removal algorithm fixed
+4)	lightning proof and being zapped by lightning checks for no armor
+	and/or no wielded weapons
+5)	change Makefile to be more efficient when maintaining distribution
+	and private copies by linking only once instead of twice
+6)	going to a new level and not wearing any armor causes seg faults
+	when testing for greedy monsters
+7)	null pointers when calculating damage caused by weapons handled
+	incorrectly
+8)	setting traps, traps due to falling objects that create traps,
+	and artifact side effects have more room by making trap array 
+	bigger

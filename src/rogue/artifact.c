@@ -42,7 +42,7 @@ apply()
 		}
 	    }
 	    debug("Rolled %d.", chance);
-	    if (chance < 60)
+	    if (chance < 65)
 		do_minor(obj);
 	    else if (chance < 80)
 		do_major(obj);
@@ -224,7 +224,7 @@ struct object *tr;
 		else
 		    msg("You feel something very hot nearby.");
 		rp = roomin(&hero);
-		if (ntraps + 1 < MAXTRAPS && 
+		if (ntraps + 1 < MAXTRAPS + MAXTRAPS && 
 				fallpos(&hero, &fpos, TRUE)) {
 			mvaddch(fpos.y, fpos.x, FIRETRAP);
 			traps[ntraps].tr_type = FIRETRAP;
@@ -679,7 +679,7 @@ struct object *tr;
 		    msg("You feel a puff of hot air.");
 		    return;
 		}
-		for (; ntraps < MAXTRAPS; ntraps++) {
+		for (; ntraps < MAXTRAPS + MAXTRAPS; ntraps++) {
 		    if (!fallpos(&hero, &fires, TRUE))
 		        break;
 		    mvaddch(fires.y, fires.x, FIRETRAP);

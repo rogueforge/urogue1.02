@@ -172,8 +172,7 @@ bool thrown;
 		    }
 		    else {
 			msg("Your armor shatters from the shriek.");
-			obj->o_flags &= ~ISCURSED;
-			dropcheck(obj);
+			cur_armor = NULL;
 			detach(pack, item);
 			freeletter(item);
 			discard(item);
@@ -359,8 +358,7 @@ bool thrown;
 		    }
 		    else {
 			msg("Your armor is shattered by the blow.");
-			obj->o_flags &= ~ISCURSED;
-			dropcheck(obj);
+			cur_armor = NULL;
 			detach(pack, item);
 			freeletter(item);
 			discard(item);
@@ -989,7 +987,7 @@ struct object *cur_weapon;
 	    def->s_hpt -= max(0, damage);	/* Do the damage */
 	    did_hit = TRUE;
 	}
-	if ((cp = strchr(cp, '/')) == NULL)	/* strchr was index */
+	if (cp == NULL || (cp = strchr(cp, '/')) == NULL)
 	    break;
 	cp++;
     }

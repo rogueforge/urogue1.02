@@ -1121,7 +1121,7 @@ register int y, x;
 
     if (is_player && player.t_ctype == C_THIEF) thief_bonus = 10;
 
-  if (ntraps >= MAXTRAPS || ++trap_tries >= MAXTRPTRY || levtype == POSTLEV ||
+  if (ntraps >= MAXTRAPS + MAXTRAPS || ++trap_tries >= MAXTRPTRY || levtype == POSTLEV ||
 	rnd(60) >= (tp->t_stats.s_dext + tp->t_stats.s_lvl/2 + thief_bonus)) {
 	if (is_player) msg("The trap failed!");
 	return;
