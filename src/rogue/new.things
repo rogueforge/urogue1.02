@@ -742,3 +742,11 @@
 1.02 Gamma July 18, 85
 1)	make dexterity of a monster level dependent past level 60 of
 	dungeon
+
+1.02 Gamma July 21, 85
+1)	silver weapons can't rust no matter what
+2)	hitting a rusting monster with a non-metallic weapon no longer
+	tells you the rust vanishes
+3)	no message of rust vanishing from your armor if it is
+	inherently rustproof
+4)	fixed grammar on messages about falling through various traps

@@ -550,7 +550,7 @@ register coord *tc;
 		new_level(NORMLEV);
 		addmsg("You fell into a trap");
 		if (rnd(4) < 2) {
-		    addmsg(" and was damaged by the fall");
+		    addmsg(" and were damaged by the fall");
 		    if ((pstats.s_hpt -= roll(1,6)) <= 0) {
 			addmsg("!  The fall killed you.");
 			endmsg();
@@ -788,7 +788,7 @@ register coord *tc;
 	    new_level(MAZELEV);
 	    addmsg("You are surrounded by twisty passages");
 	    if (rnd(4) < 1) {
-	        addmsg(" and was damaged by the fall");
+	        addmsg(" and were damaged by the fall");
 	        if ((pstats.s_hpt -= roll(1,6)) <= 0) {
 		    addmsg("!  The fall killed you.");
 		    endmsg();

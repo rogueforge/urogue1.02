@@ -117,6 +117,7 @@ bool thrown;
 		if (!thrown && (weap != NULL) &&
 		    (weap->o_flags & ISMETAL) &&
 		    !(weap->o_flags & ISPROT) &&
+		    !(weap->o_flags & ISSILVER) &&
 		    (weap->o_hplus < 1) && (weap->o_dplus < 1)) {
 		    if (rnd(100) < 50) weap->o_hplus--;
 		    else weap->o_dplus--;
@@ -124,7 +125,7 @@ bool thrown;
 			  : "Your %s appears to be weaker now!",
 		        weaps[weap->o_which].w_name);   
 		}
-		else if (!thrown && weap != NULL)
+		else if (!thrown && weap != NULL && (weap->o_flags & ISMETAL))
 		    msg(terse ? "" : "The rust vanishes from your %s!",
 			weaps[weap->o_which].w_name);   
 	    }
@@ -473,7 +474,12 @@ bool thrown;
 		        : "Your armor appears to be weaker now. Oh my!");
 		    cur_armor->o_ac++;
 		}
-		else if (cur_armor != NULL && (cur_armor->o_flags & ISPROT))
+		else if (cur_armor != NULL && 
+		    (cur_armor->o_flags & ISPROT) &&
+		    cur_armor->o_which != LEATHER &&
+		    cur_armor->o_which != PADDED_ARMOR &&
+		    cur_armor->o_which != CRYSTAL_ARMOR &&
+		    cur_armor->o_which != MITHRIL)
 		    msg(terse ? "" : "The rust vanishes instantly!");
 	    }
 
