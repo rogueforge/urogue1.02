@@ -517,6 +517,9 @@ teleport()
     /* Make sure player does not suffocate */
     extinguish(suffocate);
 
+    /* not trapped anymore */
+    player.t_no_move = 0;
+
     count = 0;
     running = FALSE;
     flushout();

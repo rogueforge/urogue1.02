@@ -245,7 +245,7 @@ int dy, dx;
 
     hero = nh;	/* Move the hero */
 
-    if ((ch==PASSAGE || ch==WALL) && (hch=='-' || hch=='|' || hch==DOOR)) {
+    if ((ch==PASSAGE || ch==WALL) && (hch=='-' || hch=='|' || hch==DOOR || hch==SECRETDOOR)) {
 	/* Leaving a room -- darken it */
 	register struct room *rp = roomin(&old_hero);
 	bool is_lit = FALSE;
@@ -256,7 +256,7 @@ int dy, dx;
 	light(&old_hero);
 	if (is_lit) rp->r_flags &= ~ISDARK; /* Restore light state */
     }
-    else if (ch == DOOR || ch == '|' || ch == '-') { /* Entering a room */
+    else if (ch == DOOR || ch == SECRETDOOR || ch == '|' || ch == '-') { /* Entering a room */
 	running = FALSE;
 	if (hch == PASSAGE || hch == WALL)
 	    light(&hero);	/* knows whether the hero can see things in */
@@ -936,7 +936,7 @@ dip_it()
 	    return;
 	}
 	if (tp->tr_flags & ISGONE) {
-	    msg("This %s appears to have used once already.",
+	    msg("This %s appears to have been used once already.",
 		(tp->tr_type == POOL ? "shimmering pool" : "poison pool"));
 	    return;
 	}

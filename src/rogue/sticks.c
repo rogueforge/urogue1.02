@@ -790,6 +790,7 @@ int damage;
 		}
 		else if (pos.y == hero.y && pos.x == hero.x) {
 at_hero: 
+		    running = fighting = FALSE;
 		    if (!save(VS_MAGIC-(cur_armor->o_which==MITHRIL ? -5:0))) {
 			if (terse)
 			    msg("The %s hits you.", name);

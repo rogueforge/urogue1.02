@@ -3,13 +3,15 @@
 #
 
 CC = cc -O
-RM =/bin/rm -f
+CHOWN= /etc/chown
+CHGRP= chgrp
+RM = /bin/rm -f
 INSTALLDIR = /usr/local/la
 UROGUE = /usr/games/urogue
 LIB = ur.lib
-.o.c:		
-		$(CC) -O -c $*.o
-
+URUSER= daemon
+URGROUP= daemon
+URMODE= 4511
 
 all:		urogue control namefinder lav
 
@@ -24,21 +26,21 @@ namefinder:	namefinder.o tunable.o
 
 lav:		lav.o
 		$(CC) lav.o -o lav
-		
+
 install:	all
-		install -s -o games -m 4511 urogue $(UROGUE)
+		install -s -o $(URUSER) -g $(URGROUP) -m $(URMODE) urogue $(UROGUE)
 		install -s -g kmem -m 2511 lav $(INSTALLDIR)
 
-uninstall:	uninit clean 
+uninstall:	uninit clean
 		$(RM) $(UROGUE)
 
 uninit:		namefinder
 		$(RM) `namefinder`
-		
-init:		namefinder uninit
-		touch `namefinder`
-		chown games `namefinder`
 
 clean:		
-		$(RM) urogue control namefinder tunable.o
+		$(RM) urogue control namefinder lav tunable.o core
 
+init:		namefinder uninit
+		touch `namefinder`
+		$(CHOWN) $(URUSER) `namefinder`
+		$(CHGRP) $(URGROUP) `namefinder`

@@ -772,3 +772,13 @@
 1)	sys3 support added, courtesy dan@ciprico
 2)	new random number routines added to the optional files
 	for people without srandom and random
+
+1.02 Delta, July 29, 85
+1)	teleporting turns off being held by a bear trap
+2)	being hit by a breath weapon while running stops you running
+3)	replaced Makefile.install with one supplied by jason@ucblilac
+4)	fighting mummies with no weapon usually causes seg faults so
+	pointer must be checked  (dan@ciprico)
+5)	entering a room through a secret door while phased is supposed to
+	light the room (dan@ciprico)
+6)	trying to dip where there's no pool gives wrong message
