@@ -266,6 +266,7 @@ get_food:
     obj = OBJPTR(item);
     obj->o_weight = things[TYP_FOOD].mi_wght;
     add_pack(item, TRUE);
+    resurrect = pstats.s_const;
     new_level(FALSE);			/* Draw current level */
     /*
      * Start up daemons and fuses

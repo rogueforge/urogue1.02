@@ -606,7 +606,7 @@ listen()
     register int thief_bonus = -50;
     register int mcount = 0;
 
-    if (player.t_ctype = C_THIEF)
+    if (player.t_ctype == C_THIEF)
 	thief_bonus = 10;
 
     for (item = mlist; item != NULL; item = next(item)) {

@@ -563,3 +563,20 @@
 15)	silver weapons do twice damage to undead monsters
 16)	source frozen for version as reference.  further updates sent
 	out will be via context diffs
+
+1.02 Beta May 20/85
+1)	modified saving throw for resurrection to take into account current
+	constitution adjusted for luck and ring values
+2)	rings of resurrection and teleport control now has enchantment 
+	amount printed
+3)	a failed resurrection now waits for the user to read the message
+	before continuing with termination
+4)	off-by-one error in counting resurrection attempts
+5)	added diagonal moves to teleport control (sort of)
+6)	successful control of teleport modified by luck and ring values
+7)	corrected initialization of resurrection count
+8)	moved tripping, summoning, and other things inside the test for
+	valid commands
+9)	changed algorithm for determining successful resurection with
+	everything
+10)	bug in listen command changed you to a thief when using it

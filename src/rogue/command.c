@@ -490,72 +490,74 @@ command()
 	    }
 	    else msg("You feel dizzy for a moment, but it quickly passes.");
 	}
-    }
-    if (fighting && rnd(50) == 0) {
-	msg("You become tired of this nonsense.");
-	fighting = after = FALSE;
-    }
-    if (on(player, ISELECTRIC)) {
-	register int lvl;
-	register struct linked_list *item;
-	register struct thing *tp;
 
-	for (item = mlist; item != NULL; item = next(item)) {
-	    tp = (struct thing *) ldata(item);
-	    if (DISTANCE(tp->t_pos.y, tp->t_pos.x, hero.y, hero.x) < 5) {
-		if ((tp->t_stats.s_hpt -= roll(2,4)) <= 0) {
-		    msg("The %s is killed by an electric shock.",
-			monsters[tp->t_index].m_name);
-		    killed(item, TRUE, TRUE);
-		    continue;
+	/* accidents and general clumsiness */
+	if (fighting && rnd(50) == 0) {
+	    msg("You become tired of this nonsense.");
+	    fighting = after = FALSE;
+	}
+	if (on(player, ISELECTRIC)) {
+	    register int lvl;
+	    register struct linked_list *item;
+	    register struct thing *tp;
+
+	    for (item = mlist; item != NULL; item = next(item)) {
+		tp = (struct thing *) ldata(item);
+		if (DISTANCE(tp->t_pos.y, tp->t_pos.x, hero.y, hero.x) < 5) {
+		    if ((tp->t_stats.s_hpt -= roll(2,4)) <= 0) {
+			msg("The %s is killed by an electric shock.",
+			    monsters[tp->t_index].m_name);
+			killed(item, TRUE, TRUE);
+			continue;
+		    }
+		    lvl = tp->t_stats.s_intel - 5;
+		    if (lvl < 0)
+			lvl = 10 + tp->t_stats.s_intel;
+		    if (rnd(lvl + 1)/5 == 0) {
+			turn_on(*tp, ISFLEE);
+			msg("The %s is shocked by electricity.",
+			    monsters[tp->t_index].m_name);
+		    }
+		    else
+			msg("The %s is zapped by your electricity.",
+			    monsters[tp->t_index].m_name);
+		    turn_on(*tp, ISRUN);
+		    turn_off(*tp, ISDISGUISE);
+		    fighting = after = running = FALSE;
 		}
-		lvl = tp->t_stats.s_intel - 5;
-		if (lvl < 0)
-		    lvl = 10 + tp->t_stats.s_intel;
-		if (rnd(lvl + 1)/5 == 0) {
-		    turn_on(*tp, ISFLEE);
-		    msg("The %s is shocked by electricity.",
-			monsters[tp->t_index].m_name);
-		}
-		else
-		    msg("The %s is zapped by your electricity.",
-			monsters[tp->t_index].m_name);
-		turn_on(*tp, ISRUN);
-		turn_off(*tp, ISDISGUISE);
-		fighting = after = running = FALSE;
 	    }
 	}
-    }
-    if (!fighting && (no_command == 0) && cur_weapon != NULL
+	if (!fighting && (no_command == 0) && cur_weapon != NULL
 		&& rnd(on(player, STUMBLER) ? 399 : 9999) == 0
-    		&& rnd(pstats.s_dext) < 
-			2 - hitweight() + (on(player, STUMBLER) ? 4 : 0)) {
-	msg("You trip and stumble over your weapon.");
-	running = after = FALSE;
-	if (rnd(8) == 0 && (pstats.s_hpt -= roll(1,10)) <= 0) {
-	    msg("You break your neck and die.");
-	    death(D_FALL);
-	    return;
-	}
-	else if (cur_weapon->o_flags & ISPOISON && rnd(4) == 0) {
-	    msg("You are cut by your %s!", inv_name(cur_weapon, TRUE));
-	    if (!save(VS_POISON)) {
-		if (pstats.s_hpt == 1) {
-		    msg("You die from the poison in the cut.");
-		    death(D_POISON);
-		    return;
-		}
-		else {
-		    msg("You feel very sick now.");
-		    pstats.s_hpt /= 2;
-		    chg_str(-2, FALSE, FALSE);
+		&& rnd(pstats.s_dext) < 
+		2 - hitweight() + (on(player, STUMBLER) ? 4 : 0)) {
+	    msg("You trip and stumble over your weapon.");
+	    running = after = FALSE;
+	    if (rnd(8) == 0 && (pstats.s_hpt -= roll(1,10)) <= 0) {
+		msg("You break your neck and die.");
+		death(D_FALL);
+		return;
+	    }
+	    else if (cur_weapon->o_flags & ISPOISON && rnd(4) == 0) {
+		msg("You are cut by your %s!", inv_name(cur_weapon, TRUE));
+		if (!save(VS_POISON)) {
+		    if (pstats.s_hpt == 1) {
+			msg("You die from the poison in the cut.");
+			death(D_POISON);
+			return;
+		    }
+		    else {
+			msg("You feel very sick now.");
+			pstats.s_hpt /= 2;
+			chg_str(-2, FALSE, FALSE);
+		    }
 		}
 	    }
 	}
-    }
-    if (rnd(99999) == 0) {
-	new_level(THRONE);
-	fighting = running = after = FALSE;
+	if (rnd(99999) == 0) {
+	    new_level(THRONE);
+	    fighting = running = after = FALSE;
+	}
     }
 }
 

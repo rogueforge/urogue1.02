@@ -447,8 +447,12 @@ teleport()
 		when 'j': c.y++;
 		when 'k': c.y--;
 		when 'l': c.x++;
+		when 'y': c.x--; c.y--;
+		when 'u': c.x++; c.y--;
+		when 'b': c.x--; c.y++;
+		when 'n': c.x++; c.y++;
 		when '*':
-		    msg("Use h,j,k,l to position cursor, then hit return.");
+		    msg("Use h,j,k,l,y,u,b,n to position cursor, then hit return.");
 	    }
 	    c.y = max(c.y, 1);
 	    c.y = min(c.y, LINES - 3);

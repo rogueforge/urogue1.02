@@ -186,6 +186,8 @@ register struct object *obj;
 	case R_ADDHIT:
 	case R_ADDINTEL:
 	case R_ADDWISDOM:
+	case R_RESURRECT:
+	case R_TELCONTROL:
 	    buf[0] = ' ';
 	    strcpy(&buf[1], num(obj->o_ac, 0));
 	when R_DIGEST:
@@ -197,14 +199,6 @@ register struct object *obj;
 	case R_TELEPORT:
 	    if (obj->o_flags & ISCURSED)
 		return " cursed";
-	    else
-		return "";
-	when R_RESURRECT:
-	case R_TELCONTROL:
-	    if (obj->o_flags & ISCURSED)
-		return " cursed";
-	    else if (obj->o_flags & ISBLESSED)
-		return " blessed";
 	    else
 		return "";
 	otherwise:

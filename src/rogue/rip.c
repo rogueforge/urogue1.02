@@ -50,11 +50,9 @@ register short monst;
     if (ISWEARING(R_RESURRECT)) {
 	int die = TRUE;
 
-	if (--resurrect == 0) 
+	if (resurrect-- == 0) 
 	    msg("You've run out of lives.");
-	else if (ring_value(R_RESURRECT) < 0)
-	    msg("You never had a chance.");
-	else if (!save(VS_PETRIFICATION))
+	else if (!save_resurrect(ring_value(R_RESURRECT)))
 	    msg("Your attempt to return from the grave fails.");
 	else {
 	    register struct linked_list *item;
@@ -103,7 +101,13 @@ register short monst;
 	    turn_on(player, ISHUH);
 	    light(&hero);
 	}
-	if (!die)
+	if (die) {
+	    wmove(cw, mpos, 0);
+	    waddstr(cw, morestr);
+	    draw(cw);
+	    wait_for(' ');
+	}
+	else
 	    return;
 	}
     time(&date);
@@ -544,4 +548,23 @@ void byebye()
     }
     printf("\n");
     exit(0);
+}
+
+/*
+ * save_resurrect: 
+ *	chance of resurrection according to modifed D&D probabilities
+ */
+save_resurrect(bonus)
+int bonus;
+{
+    register need, adjust;
+
+    adjust = pstats.s_const + bonus - luck;
+    if (adjust > 17)
+	return TRUE;
+    else if (adjust < 14)
+	need = 5 * (adjust + 5);
+    else
+	need = 90 + 2 * (adjust - 13);
+    return (roll(1, 100) < need);
 }

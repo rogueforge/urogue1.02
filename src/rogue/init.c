@@ -134,7 +134,6 @@ init_player()
 	pstats.s_hpt += pstats.s_const - 15;
     max_stats = pstats ;
     pack = NULL ;
-    resurrect = pstats.s_const;
     pstats.s_carry = totalenc();
 }
 
