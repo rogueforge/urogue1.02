@@ -61,6 +61,10 @@ take_off()
     cur_armor = NULL;
     addmsg(terse ? "Was" : "You used to be");
     msg(" wearing %c) %s.", pack_char(obj), inv_name(obj, TRUE));
+    if (on(player, STUMBLER)) {
+	msg("Your foot feels a lot better now.");
+	turn_off(player, STUMBLER);
+    }
 }
 
 /*

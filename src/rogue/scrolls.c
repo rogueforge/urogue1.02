@@ -32,6 +32,10 @@ bool blessed;
 	    msg ("There's nothing on it to read!");
 	    return;
 	}
+	if (on(player, ISBLIND)) {
+	    msg("You can't see to read anything.");
+	    return;
+	}
 	/* remove it from the pack */
 	inpack--;
 	detach(pack, item);

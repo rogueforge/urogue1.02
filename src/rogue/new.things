@@ -714,3 +714,9 @@
 1)	gazing monsters have no effect when hero is invisible
 2)	reduced probability of losing disguise when moving about
 3)	leprechauns now attack
+
+1.02 Gamma July 7, 85
+1)	can't read scrolls when blind
+2)	test for null pointers when refering to weapons and armor
+	in do_minor() in artifact.c
+3)	taking off armor removes stone from shoe

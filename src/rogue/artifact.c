@@ -551,18 +551,23 @@ struct object *tr;
 		player.t_dest = &fear;
 	}
 	when 89:
-		msg("You feel your %s get very hot.", 
+		if (cur_weapon != NULL) 
+		    msg("You feel your %s get very hot.", 
 			inv_name(cur_weapon, TRUE));
 	when 90:
-		msg("Your %s glows white for an instant.",
+		if (cur_weapon != NULL) 
+		    msg("Your %s glows white for an instant.",
 			inv_name(cur_weapon, TRUE));
 	when 91:
-		msg("Your %s gets very hot.", inv_name(cur_armor, TRUE));
+		if (cur_armor != NULL) 
+		    msg("Your %s gets very hot.", inv_name(cur_armor, TRUE));
 	when 92:
-		msg("Your %s suddenly feels very cold.",
+		if (cur_weapon != NULL) 
+		    msg("Your %s suddenly feels very cold.",
 			inv_name(cur_weapon, TRUE));
 	when 93:
-		msg("Your armor is covered by an oily film.");
+		if (cur_armor != NULL)
+		    msg("Your armor is covered by an oily film.");
 	when 94:
 		read_scroll(S_CREATE, FALSE);
 	when 95:
