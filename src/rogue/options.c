@@ -227,9 +227,10 @@
      {
  	if (c == -1)
  	    continue;
-#ifndef USGV4
+#if defined(USGV3) || defined(USGV5)
  	else if (c == _tty.c_cc[VERASE]) /* process erase character */
-#else
+#endif
+#if defined(BSD4)
  	else if (c == _tty.sg_erase) /* process erase character */
 #endif
  	{
@@ -243,9 +244,10 @@
  	    }
  	    continue;
  	}
-#ifndef USGV4
+#if defined(USGV3) || defined(USGV5)
  	else if (c == _tty.c_cc[VKILL])  /* process kill character */
-#else
+#endif
+#if defined(BSD4)
  	else if (c == _tty.sg_kill)  /* process kill character */
 #endif
  	{

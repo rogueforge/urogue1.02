@@ -172,7 +172,7 @@ short monst;
     struct passwd *pp, *getpwuid();
 
     signal(SIGINT, byebye());
-#ifdef USGV4
+#if defined(BSD4)
     (void) TtySetOriginalChars();
 #endif
     if (flags != WINNER && flags != TOTAL && flags != SCOREIT) {
@@ -554,7 +554,7 @@ void byebye()
 	endwin();
     }
     printf("\n");
-#ifdef USGV4
+#if defined(BSD4)
     (void) TtySetOriginalChars();
 #endif
     exit(0);

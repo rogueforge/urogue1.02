@@ -105,7 +105,7 @@ int sig;
 got1sig:
     if (file_name[0] != '\0' && (savef = fopen(file_name, "w")) != NULL)
 	save_file(savef);
-#ifdef USGV4
+#if defined(BSD4)
     (void) TtySetOriginalChars();
 #endif
     exit(1);
@@ -199,7 +199,7 @@ char **envp;
 	}
     }
 
-#ifdef USGV4
+#if defined(BSD4)
     (void) TtyInit();
     (void) TtyGetGameChars();
     (void) TtyMapGameChars();

@@ -695,3 +695,10 @@
 8)	setting traps, traps due to falling objects that create traps,
 	and artifact side effects have more room by making trap array 
 	bigger
+
+1.02 Gamma June 19, 85
+1)      put in changes and moved things around in preparation for
+	changes to be received from dan@ciprico for sys3 (aka USGV3)
+	unix.  generalized conditional compilation code to allow
+	further extension to multiple system source code versions.  no
+	recompilation is neccesary with these changes.

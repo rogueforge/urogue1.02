@@ -1,11 +1,12 @@
 #include <curses.h>
+#include <stdio.h>
 #include "rogue.h"
 #include "mach_dep.h"
-#ifdef USGV4
+#if defined(BSD4)
 #include <signal.h>
 #endif
 
-#ifndef	flushout
+#if !defined(flushout)
 flushout()
 {
 	int out = 1;
@@ -14,7 +15,7 @@ flushout()
 }
 #endif
 
-#ifdef USGV4
+#if defined(BSD4)
 
 static  struct  ltchars OriginalLtchars;
 static  struct  ltchars GameLtchars;
@@ -292,4 +293,4 @@ tstop()
   (void) wrefresh( curscr );
   return;
 }
-#endif /* USGV4 */
+#endif /* BSD4 */

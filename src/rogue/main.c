@@ -94,7 +94,7 @@ char **envp;
     if (argc == 2 && strcmp(argv[1], "-s") == 0)
     {
 	waswizard = TRUE;
-#ifdef USGV4
+#if defined(BSD4)
 	(void) TtyInit();		/* Set up for the tty magic */
 	(void) TtyMapGameChars();
 #endif
@@ -171,7 +171,7 @@ char **envp;
     init_colors();			/* Set up colors of potions */
     init_stones();			/* Set up stone settings of rings */
     init_materials();			/* Set up materials of wands */
-#ifdef USGV4
+#if defined(BSD4)
     (void) TtyInit();			/* Set up for the tty magic */
 #endif
     initscr();				/* Start up cursor package */
@@ -309,7 +309,7 @@ char *s;
     draw(stdscr);
     endwin();
     printf("\n");	/* So the cursor doesn't stop at the end of the line */
-#ifdef USGV4
+#if defined(BSD4)
     (void) TtySetOriginalChars();
 #endif
     exit(0);
@@ -345,13 +345,13 @@ register int number, sides;
 setup()
 {
     int  checkout();
-#ifdef USGV4
+#if defined(BSD4)
     int  tstop();
 #endif
 
     signal(SIGHUP, auto_save);
     signal(SIGINT, quit);
-#ifdef USGV4
+#if defined(BSD4)
     signal(SIGTSTP, tstop);
 #endif
 
@@ -379,9 +379,10 @@ playit()
      * set up defaults for slow terminals
      */
 
-#ifndef USGV4
+#if defined(USGV5) || defined(USGV3)
 	if((_tty.c_cflag & CBAUD) < B1200)
-#else
+#endif
+#if defined(BSD4)
 	if(_tty.sg_ospeed < B1200)
 #endif
     {
@@ -485,7 +486,7 @@ checkout()
 		if (file_name[0] != '\0' 
 			&& (savef = fopen(file_name, "w")) != NULL)
 		    save_file(savef);
-#ifdef USGV4
+#if defined(BSD4)
 		(void) TtySetOriginalChars();
 #endif
 		exit(1);
@@ -538,7 +539,7 @@ reg double *avg;
  * ucount:
  *	Count the number of people on the system
  */
-#ifndef USGV4		/*Must be a 5.0 UNIX system */
+#if defined(USGV5)		/*Must be a 5.0 UNIX system */
 #include <sys/types.h>
 #include <utmp.h>
 struct utmp buf;
@@ -559,7 +560,9 @@ ucount()
 	fclose(utmp);
 	return count;
 }
-#else		/* Otherwise it's a USG 3.0 or 4.0 UNIX */
+#endif
+
+#if defined(BSD4) || defined(USGV3)
 #include <utmp.h>
 
 struct utmp buf;
@@ -582,7 +585,7 @@ ucount()
     fclose(utmp);
     return count;
 }
-#endif		/* end ifndef USGV4 */
+#endif
 
 /*
  * holiday:

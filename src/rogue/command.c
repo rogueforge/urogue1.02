@@ -270,7 +270,7 @@ command()
 			wclear(cw);
 			draw(cw);
 			endwin();
-#ifdef USGV4
+#if defined(BSD4)
 			(void) TtySetOriginalChars();
 #endif
 			exit(0);
@@ -872,7 +872,7 @@ shell()
     wclear(hw);
     wmove(hw, LINES-1, 0);
     draw(hw);
-#ifdef USGV4
+#if defined(BSD4)
     (void) TtySetOriginalChars();
 #endif
     endwin();
@@ -893,7 +893,7 @@ shell()
 	execl(sh == NULL ? "/bin/sh" : sh, "shell", "-i", 0);
 	perror("No shelly");
 	endwin();
-#ifdef USGV4
+#if defined(BSD4)
 	(void) TtySetOriginalChars();
 #endif
 	exit(-1);
@@ -906,7 +906,7 @@ shell()
 	    continue;
 	signal(SIGINT, quit);
 	signal(SIGQUIT, quit);
-#ifdef USGV4
+#if defined(BSD4)
 	(void) TtySetGameChars();
 #endif
 	printf(retstr);

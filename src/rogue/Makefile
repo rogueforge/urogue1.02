@@ -2,21 +2,21 @@
 # Makefile for srogue
 #
 
-HDRS= rogue.h mach_dep.h ../tunable.h curses.h 
+HDRS= rogue.h mach_dep.h defs.h ../tunable.h curses.h 
 
 OBJS=	vers.o armor.o artifact.o chase.o command.o daemon.o daemons.o fight.o \
 	encumb.o get_play.o init.o io.o list.o main.o maze.o misc.o \
 	monsdata.o monsters.o move.o new_level.o options.o pack.o passages.o \
 	player.o potions.o rings.o rip.o rooms.o save.o scrolls.o \
-	sticks.o things.o trader.o usgv4.o weapons.o wizard.o rogue.o 
+	sticks.o things.o trader.o sys_dep.o weapons.o wizard.o rogue.o 
 
 CFILES= vers.c armor.c artifact.c chase.c command.c daemon.c daemons.c fight.c \
 	encumb.c get_play.c init.c io.c list.c main.c maze.c misc.c \
 	monsdata.c monsters.c move.c new_level.c options.c pack.c passages.c \
 	player.c potions.c rings.c rip.c rooms.c save.c scrolls.c \
-	sticks.c things.c trader.c usgv4.c weapons.c wizard.c rogue.c 
+	sticks.c things.c trader.c sys_dep.c weapons.c wizard.c rogue.c 
 
-SOURCES= $(CFILES) rogue.h mach_dep.h Makefile
+SOURCES= $(CFILES) rogue.h mach_dep.h defs.h Makefile
 
 TERMLIB= -ltermlib
 CRLIB= -lcurses
@@ -109,32 +109,32 @@ chase.o:	curses.h rogue.h
 command.o:	curses.h rogue.h
 daemon.o:	curses.h rogue.h
 daemons.o:	curses.h rogue.h
-fight.o:	curses.h rogue.h mach_dep.h
+fight.o:	curses.h rogue.h mach_dep.h defs.h
 encumb.o:	curses.h rogue.h
 get_play.o:	curses.h rogue.h
 init.o:	curses.h rogue.h
-io.o:	curses.h rogue.h mach_dep.h
+io.o:	curses.h rogue.h mach_dep.h defs.h
 list.o:	curses.h rogue.h
-main.o:	curses.h mach_dep.h rogue.h ../tunable.h
+main.o:	curses.h mach_dep.h rogue.h ../tunable.h defs.h
 maze.o:	curses.h rogue.h
 misc.o:	curses.h rogue.h
-monsters.o:	curses.h rogue.h mach_dep.h
+monsters.o:	curses.h rogue.h mach_dep.h defs.h
 move.o:	curses.h rogue.h
 new_level.o:	curses.h rogue.h
-options.o:	mach_dep.h curses.h rogue.h
+options.o:	mach_dep.h curses.h rogue.h defs.h
 pack.o:	curses.h rogue.h
 passages.o:	curses.h rogue.h
 player.o:	curses.h rogue.h
 potions.o:	curses.h rogue.h
 rings.o:	curses.h rogue.h
-rip.o:	curses.h mach_dep.h rogue.h
+rip.o:	curses.h mach_dep.h rogue.h defs.h
 rooms.o:	curses.h rogue.h
-save.o:	curses.h rogue.h mach_dep.h
+save.o:	curses.h rogue.h mach_dep.h defs.h
 scrolls.o:	curses.h rogue.h
 sticks.o:	curses.h rogue.h
 things.o:	curses.h rogue.h
 trader.o:	curses.h rogue.h
-usgv4.o:	curses.h rogue.h mach_dep.h
+sys_dep.o:	curses.h rogue.h mach_dep.h defs.h
 weapons.o:	curses.h rogue.h
-wizard.o:	curses.h rogue.h mach_dep.h
+wizard.o:	curses.h rogue.h mach_dep.h defs.h
 rogue.o:	curses.h rogue.h

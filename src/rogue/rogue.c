@@ -431,7 +431,7 @@ struct h_list helpstr[] = {
     '=',	"	listen for monsters",
     'f',	"<dir>	fight monster",
     'F',	"<dir>	fight monster to the death",
-#ifdef USGV4
+#if defined(BSD4)
     '&',	"	temporarily suspend game",
 #endif
 /*

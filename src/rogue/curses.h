@@ -150,12 +150,12 @@ extern char *_unctrl[];
 
 /*
  * This is a hack,  pure and simple to allow for
- * tty magic in BSD unix (USGV4)
+ * tty magic in BSD unix (BSD4)
  *
  * I basically need to have all calls that change the tty state
- * to pass though my hands (in usgv4.c).
+ * to pass though my hands (in sys_dep.c).
  */
-#ifdef	USGV4
+#if	defined(BSD4)
 /*
  * Set these routines to point to my routines
  */
@@ -186,5 +186,5 @@ extern char *_unctrl[];
 
 #define initscr myinitscr
 #define endwin  myendwin
-#endif USGV4
+#endif BSD4
 # endif
