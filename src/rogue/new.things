@@ -728,3 +728,13 @@
 1.02 Gamma July 10, 85
 1)	handling of ring of wizardry and spell points for clerics and
 	magicians fixed
+
+1.02 Gamma July 12, 85
+1)	fixed handling of wizard spell points because of limitations in
+	certain C compilers.  thanx to dan@ciprico
+2)	reset CBREAK mode in rip.c routine score() so that showpack() can 
+	prompt and wait for a blank to continue displaying items
+3)	reduced slightly the probability of a monster hitting back to
+	original values as received from edjames@ucbshadow
+4)	incomplete changes to handle the ring of wizardry in casting
+	and praying
