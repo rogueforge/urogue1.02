@@ -93,6 +93,10 @@ char **envp;
     if (argc == 2 && strcmp(argv[1], "-s") == 0)
     {
 	waswizard = TRUE;
+#ifdef USGV4
+	(void) TtyInit();		/* Set up for the tty magic */
+	(void) TtyMapGameChars();
+#endif
 	score(0, SCOREIT, 0);
 	exit(0);
     }

@@ -661,3 +661,7 @@
 7)	algorithm for randomizing prices by quartermasters and in trading 
 	posts changed
 8)	prices as determined by bad luck made worse
+
+1.02 Beta June 8, 85
+1)	corrected tty and job control handling for urogue -s and
+	urogue restore of saved games option

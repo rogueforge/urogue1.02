@@ -199,6 +199,11 @@ char **envp;
 	}
     }
 
+#ifdef USGV4
+    (void) TtyInit();
+    (void) TtyMapGameChars();
+#endif
+
     environ = envp;
     if (!My_term && isatty(2))
     {
