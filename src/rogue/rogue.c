@@ -429,6 +429,8 @@ struct h_list helpstr[] = {
     'S',	"	save game",
     'Q',	"	quit",
     '=',	"	listen for monsters",
+    'f',	"<dir>	fight monster",
+    'F',	"<dir>	fight monster to the death",
 /*
  * Wizard commands.  Identified by (h_ch != 0 && h_desc == 0).
  */
