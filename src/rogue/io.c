@@ -275,7 +275,8 @@ line_two:
 	s_hp == stat_ptr->s_hpt			&& 
 	s_exp == stat_ptr->s_exp		&& 
         s_pur == purse && 
-	s_ac == (cur_armor != NULL ? cur_armor->o_ac : stat_ptr->s_arm) -
+	s_ac == (cur_armor != NULL ? (cur_armor->o_ac - 10 + stat_ptr->s_arm)
+		: stat_ptr->s_arm) -
 		ring_value(R_PROTECT) && 
 	s_lvl == level 				&& 
 	s_hungry == hungry_state		) return;
@@ -289,7 +290,8 @@ line_two:
     }
     sprintf(buf, "Lvl:%d  Au:%d  Hp:%*d(%*d)  Ac:%d  Exp:%d/%ld  %s",
 	level, purse, hpwidth, stat_ptr->s_hpt, hpwidth, max_ptr->s_hpt,
-	(cur_armor != NULL ? cur_armor->o_ac : stat_ptr->s_arm) -
+	(cur_armor != NULL ? (cur_armor->o_ac - 10 + stat_ptr->s_arm)
+		: stat_ptr->s_arm) -
 	ring_value(R_PROTECT), stat_ptr->s_lvl, stat_ptr->s_exp,
 	cnames[player.t_ctype][min(stat_ptr->s_lvl-1, 10)]);
 
@@ -300,7 +302,8 @@ line_two:
     s_pur = purse;
     s_hp = stat_ptr->s_hpt;
     s_exp = stat_ptr->s_exp; 
-    s_ac = (cur_armor != NULL ? cur_armor->o_ac : stat_ptr->s_arm) - 
+    s_ac = (cur_armor != NULL ? (cur_armor->o_ac - 10 + stat_ptr->s_arm)
+		: stat_ptr->s_arm) - 
 		ring_value(R_PROTECT);
     mvwaddstr(cw, LINES - 1, 0, buf);
     switch (hungry_state)

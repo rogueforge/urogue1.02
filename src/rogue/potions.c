@@ -478,8 +478,8 @@ bool blessed;
 			return;
 		    }
 		    pstats.s_hpt /= 2;
-		    chg_str(-2);
-		    chg_dext(-2);
+		    chg_str(-2, FALSE, TRUE);
+		    chg_dext(-2, FALSE, TRUE);
 		    no_command = 3 + rnd(HEROTIME);
 		    turn_on(player, ISUNHERO);
 		    fuse(shero, 0, HEROTIME + rnd(HEROTIME), AFTER);

@@ -107,8 +107,14 @@ bool thrown;
 	    did_hit = TRUE;
 	    tp->t_wasshot = TRUE;
 
-	    if (thrown)
+	    if (thrown) {
+		if (weap != NULL && weap->o_type == WEAPON
+			&& weap->o_which == GRENADE) {
+		    msg("BOOOM!");
+		    aggravate();
+		}
 		thunk(weap, mname);
+	    }
 	    else
 		hit(NULL, mname);
 

@@ -117,6 +117,7 @@ register short monst;
     time(&date);
     lt = localtime(&date);
     clear();
+    wclear(cw);
     move(8, 0);
     while (*dp)
 	printw("%s\n", *dp++);
@@ -128,9 +129,9 @@ register short monst;
     mvaddstr(18, 28, (sprintf(prbuf, "%2d", lt->tm_year), prbuf));
     move(LINES-1, 0);
     idenpack();
+    wrefresh(cw);
     refresh();
     score(pstats.s_exp, KILLED, monst);
-    endwin();
     exit(0);
 }
 
@@ -190,8 +191,6 @@ short monst;
 	showpack(packend);
     }
 
-    if (flags != SCOREIT)
-	endwin();
     /*
      * Open file and read list
      */
@@ -290,6 +289,7 @@ short monst;
     if (flags != SCOREIT) {
 	clear();
 	refresh();
+	endwin();
     }
     /*
      * Print the list

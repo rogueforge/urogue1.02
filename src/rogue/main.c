@@ -454,6 +454,8 @@ makesure()
 	encread(rpass.rp_pkey, sizeof(rpass.rp_pkey), fd);
 	encread(rpass.rp_pass, sizeof(rpass.rp_pass), fd);
 
+	close(fd);
+
 	if((*(rpass.rp_pkey) != 0) && (*(rpass.rp_pass) != 0))
 	    canwizard = TRUE;
 	return(FALSE);
@@ -471,6 +473,8 @@ file;
 		return ;
 
 	encread(auth_or, sizeof(auth_or), fd);
+
+	close(fd);
 }
 
 checkout()

@@ -810,3 +810,21 @@
 1)	inventory name of a claimed ring had blanks in wrong place
 2)	fixed printing of inventory and counting of things inside
 	the Magic Purse of Yendor
+
+1.02	August 12, 85
+1)	Closes PERMOK and PASSCTL after they are no longer needed.  This is
+	a good practice, and was part of the reason for screwing up our server.
+2)	Quaffing a restoration after superheroism had nasty effects.
+3)	Screen no longer clears right after score file is displayed on death.
+4)	Changing your Ac from 10 would not affect status line.
+5)	Expression tree overflowed on trader.c using the 4.1 compiler.
+
+	above changes by tecot@cmu-cs-k.arpa.  the system they run has
+	a "networked" filesystem under 4.1 bsd.
+
+6)	a thrown grenade hitting a monster also explodes and makes a lot
+	of noise
+7)	probabilities of magic items of various kinds changed to make
+	things harder
+8)	costs of things re-arranged to reflect value to player more
+	accurately

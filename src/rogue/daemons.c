@@ -460,7 +460,7 @@ undisguise()
 shero()
 {
     msg("You feel normal again.");
-    chg_str(2);
-    chg_dext(2);
+    chg_str(2, FALSE, TRUE );
+    chg_dext(2, FALSE, TRUE);
     turn_off(player, ISUNHERO);
 }
