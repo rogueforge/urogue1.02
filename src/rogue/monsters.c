@@ -100,11 +100,11 @@ coord *cp;
     tp->t_stats.s_exp = mp->m_stats.s_exp + mp->m_add_exp*tp->t_stats.s_hpt;
     tp->t_stats.s_str = mp->m_stats.s_str;
 
-    if (level > 80) {
-	tp->t_stats.s_hpt += roll(4,(level-60)*2);
-	tp->t_stats.s_lvl += roll(4,(level-60)/8);
-	tp->t_stats.s_arm -= roll(2,(level-60)/8);
-	tp->t_stats.s_str += roll(2,(level-60)/12);
+    if (max_level > 70) {
+	tp->t_stats.s_hpt += roll(4,(max_level-60)*2);
+	tp->t_stats.s_lvl += roll(4,(max_level-60)/8);
+	tp->t_stats.s_arm -= roll(2,(max_level-60)/8);
+	tp->t_stats.s_str += roll(2,(max_level-60)/12);
     }
 
     /*
@@ -116,8 +116,8 @@ coord *cp;
     tp->t_stats.s_const = 8 + rnd(4);
     tp->t_stats.s_charisma = 8 + rnd(4);
 
-    if (level > 60)
-	tp->t_stats.s_dext += roll(2,(level-50)/8);
+    if (max_level > 60)
+	tp->t_stats.s_dext += roll(2,(max_level-50)/8);
 
     /* Set the initial flags */
     for (i=0; i<4; i++) tp->t_flags[i] = 0;

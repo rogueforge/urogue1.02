@@ -861,7 +861,7 @@ register coord *tc;
 		}
 	    }
 	}
-	if (rp != NULL && (is_player || can_see)) {
+	if (rp != NULL) {
 	    rp->r_flags &= ~ISDARK;
 	    light(&hero);
 	}

@@ -252,7 +252,20 @@ bool blessed;
 			    }
 			    break;
 			default:
-			    nch = ' ';
+			    if (!blessed || !isatrap(ch))
+				nch = ' ';
+			    else {
+				register struct trap *tp;
+				register struct room *rp;
+
+				tp = trap_at(i, j);
+				rp = roomin(&hero);
+				if (tp->tr_type == FIRETRAP && rp != NULL) {
+				    rp->r_flags &= ~ISDARK;
+				    light(&hero);
+		    		}
+		    		tp->tr_flags |= ISFOUND;
+			    }
 		    }
 		    if (nch != ch)
 			waddch(hw, nch);

@@ -758,3 +758,12 @@
 	the player's body AC as well
 3)	fixed initialization code for fighters to give them extra
 	body AC and also more damage from bare handed attack
+
+1.02 Gamma July 26, 85
+1)	wearing a ring of adornment also causes greedy monsters to run
+	after you
+2)	monster's level dependent attributes are dependent upon the maximum
+	level you have been
+3)	a blessed scroll of magic mapping show traps and such too
+4)	monsters stepping into firetraps while hero isn't in room
+	also marks the room as lit
