@@ -712,7 +712,10 @@ bool thrown;
 		{
 		    obj = (struct object *) ldata(list);
 		    if (rnd(33) == 0) {
-			obj->o_flags |= ISCURSED;
+			if (obj->o_flags & ISBLESSED)
+			    obj->o_flags &= ~ISBLESSED;
+			else
+			    obj->o_flags |= ISCURSED;
 			msg("You feel nimble fingers reach into you pack.");
 		    }
 		    if ((obj != cur_armor && obj != cur_weapon &&
