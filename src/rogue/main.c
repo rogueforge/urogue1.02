@@ -33,7 +33,8 @@ char **envp;
     bool alldone, predef;
     long now;
 
-    areuok();				/***another void here ***/
+    areuok(PERMOK);					/* read author file */
+    (void) signal(SIGQUIT, SIG_IGN); 		/* ignore quit for now */
     /*
      * get home and options from environment
      */
@@ -103,7 +104,6 @@ char **envp;
     /*
      * Check to see if he is a wizard
      */
-    areuok(PERMOK);
     makesure();
     if (argc >= 2 && argv[1][0] == '\0')
 	if (strcmp(PASSWD, crypt(getpass("Wizard's password: "), PASSWDSEED)) == 0)
@@ -349,7 +349,6 @@ setup()
     int  tstop();
 #endif
 
-    areuok();      /**void agin **/
     signal(SIGHUP, auto_save);
     signal(SIGINT, quit);
 #ifdef USGV4

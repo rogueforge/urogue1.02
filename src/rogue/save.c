@@ -201,6 +201,7 @@ char **envp;
 
 #ifdef USGV4
     (void) TtyInit();
+    (void) TtyGetGameChars();
     (void) TtyMapGameChars();
 #endif
 

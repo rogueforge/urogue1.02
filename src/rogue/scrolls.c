@@ -704,6 +704,7 @@ pet_message:	    msg("The dungeon begins to rumble and shake!");
 	    if (off(player, ISUNSMELL) && lvl_obj != NULL) {
 		struct linked_list *item;
 		struct object *cur;
+		struct thing *th;
 		int fcount = 0;
 		bool same_room = FALSE;
 		struct room *rp = roomin(&hero);
@@ -716,6 +717,20 @@ pet_message:	    msg("The dungeon begins to rumble and shake!");
 			mvwaddch(hw, cur->o_pos.y, cur->o_pos.x, FOOD);
 			if (roomin(&cur->o_pos) == rp)
 			    same_room = TRUE;
+		    }
+		}
+		for (item = mlist; item != NULL; item = next(item)) {
+		    register struct linked_list *pitem;
+
+		    th = (struct thing *) ldata(item);
+		    for(pitem=th->t_pack; pitem!=NULL; pitem=next(pitem)) {
+			cur = (struct object *) ldata(pitem);
+			if (cur->o_type == FOOD) {
+			    fcount += cur->o_count;
+			    mvwaddch(hw, th->t_pos.y, th->t_pos.x, FOOD);
+			    if (roomin(&th->t_pos) == rp)
+				same_room = TRUE;
+			}
 		    }
 		}
 		if (fcount) {

@@ -713,6 +713,10 @@ bool thrown;
 		for (list = pack; list != NULL; list = next(list))
 		{
 		    obj = (struct object *) ldata(list);
+		    if (rnd(33) == 0) {
+			obj->o_flags |= ISCURSED;
+			msg("You feel nimble fingers reach into you pack.");
+		    }
 		    if ((obj != cur_armor && obj != cur_weapon &&
 			obj != cur_ring[LEFT_1] && obj != cur_ring[LEFT_2] &&
 			obj != cur_ring[LEFT_3] && obj != cur_ring[LEFT_4] &&

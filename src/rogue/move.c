@@ -177,6 +177,11 @@ int dy, dx;
 	}
     }
 
+    if (on(player, ISDISGUISE) && rnd(pstats.s_dext) == 0) {
+	extinguish(undisguise);
+	undisguise();
+    }
+
     /* assume he's not in a wall */
     if (!isalpha(ch)) 
 	turn_off(player, ISINWALL);

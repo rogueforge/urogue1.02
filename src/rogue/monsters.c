@@ -104,7 +104,7 @@ coord *cp;
 	tp->t_stats.s_hpt += roll(4,(level-60)*2);
 	tp->t_stats.s_lvl += roll(4,(level-60)/8);
 	tp->t_stats.s_arm -= roll(2,(level-60)/8);
-	tp->t_stats.s_str += roll(2,(level-60)/8);
+	tp->t_stats.s_str += roll(2,(level-60)/12);
     }
 
     /*

@@ -56,6 +56,7 @@ register short monst;
 	    msg("Your attempt to return from the grave fails.");
 	else {
 	    register struct linked_list *item;
+	    register struct linked_list *next_item;
 	    register struct object *obj;
 	    register int rm, flags;
 	    coord pos;
@@ -68,13 +69,17 @@ register short monst;
 		pstats.s_const = max(pstats.s_const - 1, 3);
 	    }
 	    else {
-		item = pack;
-		while (item != NULL) {
+		for (item=pack; item!=NULL; item=next_item) {
 		    obj = (struct object *) ldata(item);
+		    if (obj->o_flags & ISOWNED || obj->o_flags & ISPROT) {
+			next_item = next(item);
+			continue;
+		    }
 		    flags = obj->o_flags;
 		    obj->o_flags &= ~ISCURSED;
 		    dropcheck(obj);
 		    obj->o_flags = flags;
+		    next_item = next(item);
 		    detach(pack, item);
 		    freeletter(item);
 		    attach(lvl_obj, item);
@@ -87,7 +92,6 @@ register short monst;
 		    } until (winat(pos.y, pos.x) == FLOOR);
 		    mvaddch(pos.y, pos.x, obj->o_type);
 		    obj->o_pos = pos;
-		    item = pack;
 		}
 		pstats.s_hpt = pstats.s_const;
 		pstats.s_const = max(pstats.s_const - roll(2,2), 3);

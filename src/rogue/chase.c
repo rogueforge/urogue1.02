@@ -335,6 +335,10 @@ register bool flee;
 	 */
 	ch_ret = *rndmove(tp);
 	dist = DISTANCE(ch_ret.y, ch_ret.x, ee->y, ee->x);
+
+	if (on(*tp, ISHUH) && rnd(20) == 0)  /* monster might lose confusion */
+	    turn_off(*tp, ISHUH);
+
 	/*
 	 * check to see if random move takes creature away from player
 	 * if it does then turn off ISHELD

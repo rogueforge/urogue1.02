@@ -665,3 +665,15 @@
 1.02 Beta June 8, 85
 1)	corrected tty and job control handling for urogue -s and
 	urogue restore of saved games option
+
+1.02 Beta June 9, 85
+1)	too much movement when disguised turns it off
+2)	reduced gain in monster strength below level 80
+3)	improved resistance of crystalline armor to shattering when hit
+4)	confused monsters can lose their confusion
+5)	food detection also looks in monster's packs too
+6)	evil sorceresses and nymphs can curse something in your pack
+	while they are looking through it
+7)	fix tty characteristics when restoring a game
+8)	improved chances of taking it with you when you are resurrected
+9)	corrected author and SIGQUIT handling
