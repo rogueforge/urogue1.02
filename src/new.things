@@ -580,3 +580,9 @@
 9)	changed algorithm for determining successful resurection with
 	everything
 10)	bug in listen command changed you to a thief when using it
+
+1.02 Beta May 21/85
+
+1)	a blessed scroll acquirement allows creation of an artifact or
+	monster even if not wizard
+2)	infestation is not supposed to be immediately fatal
