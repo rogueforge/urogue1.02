@@ -5,6 +5,7 @@
  */
 
 #include "curses.h"
+#include "mach_dep.h"
 #include <ctype.h>
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -244,7 +245,7 @@ char **envp;
  *
  *****************************************************************/
 
-# include "stdio.h"
+# include <stdio.h>
 
 /* Constants for key generation */
 # define OFFSET		667818

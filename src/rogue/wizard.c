@@ -5,6 +5,7 @@
  */
 
 #include "curses.h"
+#include "mach_dep.h"
 #include <ctype.h>
 #include "rogue.h"
 
@@ -536,13 +537,13 @@ passwd()
     mpos = 0;
     sp = buf;
     while ((c = (getchar() & 0177)) != '\n' && c != '\r' && c != '\033')
-#ifdef USGV4
+#ifndef USGV4
 	if (c == _tty.c_cc[VKILL])
 #else
 	if (c == _tty.sg_kill)
 #endif
 	    sp = buf;
-#ifdef USGV4
+#ifndef USGV4
 	else if (c == _tty.c_cc[VERASE] && sp > buf)
 #else
 	else if (c == _tty.sg_erase && sp > buf)

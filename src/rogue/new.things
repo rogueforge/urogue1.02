@@ -636,3 +636,8 @@
 	(thanx jason%ucblilac.CC@berkeley.arpa)
 2)	anything can be claimed now.  inventory names and worth of objects
 	changed to reflect this
+
+1.02 Beta June 4/85
+1)	check for monster wielding a weapon didn't check for null pointer
+2)	changed #include "stdio.h" to <stdio.h> in save.c
+3)	include mach_dep.h in io.c, save.c, and wizard.c

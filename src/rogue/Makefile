@@ -111,7 +111,7 @@ fight.o:	curses.h rogue.h mach_dep.h
 encumb.o:	curses.h rogue.h
 get_play.o:	curses.h rogue.h
 init.o:	curses.h rogue.h
-io.o:	curses.h rogue.h
+io.o:	curses.h rogue.h mach_dep.h
 list.o:	curses.h rogue.h
 main.o:	curses.h mach_dep.h rogue.h ../tunable.h
 maze.o:	curses.h rogue.h
@@ -127,12 +127,12 @@ potions.o:	curses.h rogue.h
 rings.o:	curses.h rogue.h
 rip.o:	curses.h mach_dep.h rogue.h
 rooms.o:	curses.h rogue.h
-save.o:	curses.h rogue.h
+save.o:	curses.h rogue.h mach_dep.h
 scrolls.o:	curses.h rogue.h
 sticks.o:	curses.h rogue.h
 things.o:	curses.h rogue.h
 trader.o:	curses.h rogue.h
 usgv4.o:	curses.h rogue.h mach_dep.h
 weapons.o:	curses.h rogue.h
-wizard.o:	curses.h rogue.h
+wizard.o:	curses.h rogue.h mach_dep.h
 rogue.o:	curses.h rogue.h

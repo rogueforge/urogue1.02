@@ -3,6 +3,7 @@
  */
 
 #include "curses.h"
+#include "mach_dep.h"
 #include <ctype.h>
 #include "rogue.h"
 

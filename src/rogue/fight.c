@@ -1350,6 +1350,8 @@ struct thing *mp;
     int look_for;
     register struct linked_list *pitem;
 
+    if (weapon == NULL)
+	return (NULL);
     switch (weapon->o_which) {
 	case BOLT:	/* Find the crossbow */
 	    look_for = CROSSBOW;
