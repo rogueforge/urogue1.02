@@ -738,3 +738,7 @@
 	original values as received from edjames@ucbshadow
 4)	incomplete changes to handle the ring of wizardry in casting
 	and praying
+
+1.02 Gamma July 18, 85
+1)	make dexterity of a monster level dependent past level 60 of
+	dungeon

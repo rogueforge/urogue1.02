@@ -116,6 +116,9 @@ coord *cp;
     tp->t_stats.s_const = 8 + rnd(4);
     tp->t_stats.s_charisma = 8 + rnd(4);
 
+    if (level > 60)
+	tp->t_stats.s_dext += roll(2,(level-50)/8);
+
     /* Set the initial flags */
     for (i=0; i<4; i++) tp->t_flags[i] = 0;
     for (i=0; i<10; i++)
