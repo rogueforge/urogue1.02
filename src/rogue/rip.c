@@ -261,7 +261,7 @@ short monst;
 	    }
 	    else {
 		sprintf(prbuf, " (%s)", pp->pw_name);
-		if (strcmp(scp->sc_name, whoami))
+		if (strcmp(scp->sc_name, pp->pw_name))
 		    strcat(scp->sc_name, prbuf);
 	    }
 	    sprintf(prbuf, ", Level %d %s", pstats.s_lvl, 

@@ -597,3 +597,7 @@
 1.02 Beta May 23/85
 1)	termination after load average is too high does a save instead
 	of just quitting
+
+1.02 Beta May 25/85
+1)	corrected code for adding userid after name in scorefile
+2)	redisplaying of messages after being cleared by msg("") fixed
