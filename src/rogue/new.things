@@ -702,3 +702,10 @@
 	unix.  generalized conditional compilation code to allow
 	further extension to multiple system source code versions.  no
 	recompilation is neccesary with these changes.
+
+1.02 Gamma June 21, 85
+1)	fixed bug in quaffing gain ability when dexterity or strength
+	has been lost
+2)	wearing a ring of wizardry doubles spell points for casting and
+	praying for all player classes provided that they have enough
+	ability to cast or pray

@@ -147,7 +147,7 @@
  
  pray()
  {
-     register short i, num_prayers, which_prayer;
+     register short i, num_prayers, which_prayer, avail_points;
      register bool nohw = FALSE;
  
      if (player.t_ctype != C_CLERIC && pstats.s_wisdom < 17) {
@@ -170,10 +170,14 @@
  
      if (num_prayers > MAXPRAYERS) 
  	num_prayers = MAXPRAYERS;
+
+     avail_points = pstats.s_wisdom * pstats.s_lvl;
+     if (ISWEARING(R_WIZARD))
+ 	avail_points *= 2;
  
      /* Prompt for prayer */
      msg("Which prayer are you offering [%d points left]? (* for list): ",
- 			pstats.s_wisdom * pstats.s_lvl - pray_time);
+ 			avail_points - pray_time);
  
      which_prayer = (short) ((getchar() & 0177) - 'a');
      if (which_prayer == (short) ESCAPE - (short) 'a') {
@@ -190,7 +194,7 @@
  	    mvwaddch(cw, 0, 0, '[');
  	    waddch(cw, (char) ((short) 'a' + i));
  	    wprintw(cw, ", %d/%d] A prayer for ", cleric_spells[i].s_cost,
- 			pstats.s_wisdom * pstats.s_lvl - pray_time);
+ 			avail_points - pray_time);
  	    if (cleric_spells[i].s_type == TYP_POTION)
  		waddstr(cw, p_magic[cleric_spells[i].s_which].mi_name);
  	    else if (cleric_spells[i].s_type == TYP_SCROLL)
@@ -231,7 +235,7 @@
  	}
  	wmove(hw, 0, 0);
  	wprintw(hw, "Which prayer are you offering (%d points left)? ",
- 				pstats.s_wisdom * pstats.s_lvl - pray_time);
+ 				avail_points - pray_time);
  	draw(hw);
      }
  
@@ -251,8 +255,7 @@
      }
  
  
-     if (cleric_spells[which_prayer].s_cost + pray_time > 
- 		 pstats.s_wisdom * pstats.s_lvl){
+     if (cleric_spells[which_prayer].s_cost + pray_time > avail_points){
  	msg("Your prayer fails.");
  	return;
      }
@@ -360,7 +363,7 @@
  
  cast()
  {
-     register short i, num_spells, which_spell;
+     register short i, num_spells, which_spell, avail_points;
      register nohw = FALSE;
  
      if (player.t_ctype != C_MAGICIAN && pstats.s_intel < 16) {
@@ -384,9 +387,13 @@
     if (num_spells > MAXSPELLS) 
 	num_spells = MAXSPELLS;
 
+    avail_points = pstats.s_intel * pstats.s_lvl;
+    if (ISWEARING(R_WIZARD))
+	avail_points *= 2;
+
     /* Prompt for spells */
     msg("Which spell are you casting [%d points left]? (* for list): ",
-			pstats.s_intel * pstats.s_lvl - spell_power);
+			avail_points - spell_power);
 
     which_spell = (short) ((getchar() & 0177) - 'a');
     if (which_spell == (short) ESCAPE - (short) 'a') {
@@ -403,7 +410,7 @@
 	    mvwaddch(cw, 0, 0, '[');
 	    waddch(cw, (char) ((short) 'a' + i));
 	    wprintw(cw, ", %d/%d] A spell of ", magic_spells[i].s_cost,
-			pstats.s_intel * pstats.s_lvl - spell_power);
+			avail_points - spell_power);
 	    if (magic_spells[i].s_type == TYP_POTION)
 		waddstr(cw, p_magic[magic_spells[i].s_which].mi_name);
 	    else if (magic_spells[i].s_type == TYP_SCROLL)
@@ -444,7 +451,7 @@
 	}
 	wmove(hw, 0, 0);
 	wprintw(hw, "Which spell are you casting (%d points left)? ",
-			pstats.s_intel * pstats.s_lvl - spell_power);
+			avail_points - spell_power);
 	draw(hw);
     }
 
@@ -464,8 +471,7 @@
 	}
     }
 
-    if ((spell_power + magic_spells[which_spell].s_cost) > 
-	pstats.s_intel * pstats.s_lvl) {
+    if ((spell_power + magic_spells[which_spell].s_cost) > avail_points) {
 	msg("Your attempt fails.");
 	return;
     }

@@ -665,7 +665,12 @@ bool blessed;
     }
     else {
 	msg("You feel stronger now.  What bulging muscles!");
-	chg_str(1, TRUE, FALSE);
+	if (lost_str != 0) {
+	    lost_str--;
+	    chg_str(1, FALSE, FALSE);
+	}
+	else
+	    chg_str(1, TRUE, FALSE);
     }
  }
 
@@ -747,7 +752,12 @@ bool blessed;
     }
     else {
 	msg("You feel more dextrous now.  Watch those hands!");
-	chg_dext(1, TRUE, FALSE);
+	if (lost_dext != 0) {
+	    lost_dext--;
+	    chg_dext(1, FALSE, FALSE);
+	}
+	else
+	    chg_dext(1, TRUE, FALSE);
    }
  }
 
