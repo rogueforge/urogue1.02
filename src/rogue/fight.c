@@ -690,7 +690,8 @@ bool thrown;
 		    }
 		}
 
-		turn_on(*mp, ISFLEE);
+		if (rnd(2))
+		    turn_on(*mp, ISFLEE);
 		turn_on(*mp, ISINVIS);
 	    }
 
@@ -752,11 +753,12 @@ bool thrown;
 			    has_artifact &= ~(1 << obj->o_which);
 		    }
 		    if (obj->o_flags & ISOWNED) {
-			turn_off(*mp, ISFLEE);
 			turn_on(*mp, NOMOVE);
 			msg("The %s is transfixed by your ownership spell.",
 				mname);
 		    }
+		    if (rnd(2))
+			turn_on(*mp, ISFLEE);
                     turn_on(*mp, ISINVIS);
 		    updpack(FALSE);
 		}

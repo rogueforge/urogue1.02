@@ -533,7 +533,8 @@ register bool flee;
 		     * step on it (unless our hero is on top!)
 		     */
 		    if (isatrap(ch)) {
-			if (!(ch == FIRETRAP && on(*tp,NOFIRE)) &&
+			if (!(ch == RUSTTRAP) && 
+			    !(ch == FIRETRAP && on(*tp,NOFIRE)) &&
 			    rnd(10) < tp->t_stats.s_intel &&
 			    (y != hero.y || x != hero.x))
 				continue;

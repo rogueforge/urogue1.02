@@ -623,3 +623,10 @@
 
 1.02 Beta June 1/85
 1)	increased the value of some items
+
+1.02 Beta June 3/85
+1)	made leprechauns and nymphs harder to kill and more likely
+	to stay around
+2)	nymphs now attack whenever possible
+3)	monsters ignore rust traps now
+4)	changed help for 'f' and 'F' commands slightly
