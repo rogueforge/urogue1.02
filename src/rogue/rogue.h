@@ -548,7 +548,8 @@
 #define PERTUSKA	46		/* pertuska */
 #define SABRE		47		/* sabre */
 #define CUTLASS		48		/* cutlass sword */
-#define MAXWEAPONS	49		/* types of weapons */
+#define GRENADE		49		/* grenade for explosions */
+#define MAXWEAPONS	50		/* types of weapons */
 #define NONE		100		/* no weapon */
 
 /*
@@ -587,10 +588,10 @@
 #define	R_ADDINTEL	13
 #define	R_ADDWISDOM	14
 #define	R_HEALTH	15
-#define R_HEAVY		16
+#define R_VREGEN	16
 #define R_LIGHT		17
 #define R_DELUSION	18
-#define R_NEGWEIGHT	19
+#define R_CARRYING	19
 #define R_ADORNMENT	20
 #define R_LEVITATION	21
 #define R_FIRERESIST	22
@@ -626,7 +627,8 @@
 #define WS_MDEG		16
 #define WS_NOTHING	17
 #define WS_INVIS	18
-#define	MAXSTICKS	19
+#define WS_BLAST	19
+#define	MAXSTICKS	20
 
 /*
  * Food types

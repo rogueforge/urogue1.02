@@ -28,7 +28,8 @@ char **envp;
     register struct linked_list *item;
     register struct object *obj;
     struct passwd *getpwuid();
-    char *getpass(), *crypt();
+    char *getpass(), *crypt(), *strrchr();
+    char *pagerbase;
     int quit(), lowtime, wpt, i, j, hpadd, dmadd;
     bool alldone, predef;
     long now;
@@ -101,6 +102,15 @@ char **envp;
 	score(0, SCOREIT, 0);
 	exit(0);
     }
+
+    /*
+     * check for news option
+     */
+    if (argc == 2 && strcmp(argv[1], "-n") == 0) {
+	pagerbase = strrchr(PAGER, '/')+1;
+	(void) execl(PAGER, pagerbase, NEWS, 0);
+	exit(0);
+    }
     /*
      * Check to see if he is a wizard
      */
@@ -110,6 +120,7 @@ char **envp;
 	{
 		if (canwizard)
 		{
+		    signal(SIGQUIT, SIG_DFL);
 		    wizard = TRUE;
 		    argv++;
 		    argc--;

@@ -446,12 +446,14 @@ new_thing()
 		case R_PROTECT:
 		case R_ADDHIT:
 		case R_ADDDAM:
+		case R_CARRYING:
 		    cur->o_ac = rnd(2) + 1;	/* From 1 to 3 */
 		    if (cur->o_flags & ISCURSED)
 			cur->o_ac = -cur->o_ac;
 		    if (cur->o_flags & ISBLESSED) cur->o_ac++;
 		when R_RESURRECT:
 		case R_TELCONTROL:
+		case R_VREGEN:
 		    cur->o_ac = 0;
 		    if (cur->o_flags & ISCURSED)
 			cur->o_ac = -1;

@@ -66,7 +66,26 @@ missile(ydelta, xdelta, item, tp)
 	* or if it misses (combat) the monster, put it on the floor
 	*/
 	if (!hit_monster(unc(obj->o_pos), obj, tp)) {
-	    if (obj->o_flags & ISLOST) {
+	    if (obj->o_type == WEAPON && obj->o_which == GRENADE) {
+		register struct room *rp;
+		static coord fpos;
+
+		msg("BOOOM!");
+		aggravate();
+		rp = roomin(&obj->o_pos);
+		if (ntraps + 1 < MAXTRAPS + MAXTRAPS && 
+				fallpos(&obj->o_pos, &fpos, TRUE)) {
+		    mvaddch(fpos.y, fpos.x, TRAPDOOR);
+		    traps[ntraps].tr_type = TRAPDOOR;
+		    traps[ntraps].tr_flags = ISFOUND;
+		    traps[ntraps].tr_show = TRAPDOOR;
+		    traps[ntraps].tr_pos.y = fpos.y;
+		    traps[ntraps++].tr_pos.x = fpos.x;
+		    light(&hero);
+		}
+		discard(item);
+	    }
+	    else if (obj->o_flags & ISLOST) {
 		if (obj->o_type == WEAPON)
 		    addmsg("The %s", weaps[obj->o_which]);
 		else

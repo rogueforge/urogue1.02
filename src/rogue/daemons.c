@@ -57,14 +57,18 @@ struct thing *tp;
 		curp->s_hpt += rnd(new_points)+1;
     }
     if (tp == &player) {
-	if (ISRING(LEFT_1, R_REGEN)) curp->s_hpt++;
-	if (ISRING(LEFT_2, R_REGEN)) curp->s_hpt++;
-	if (ISRING(LEFT_3, R_REGEN)) curp->s_hpt++;
-	if (ISRING(LEFT_4, R_REGEN)) curp->s_hpt++;
-	if (ISRING(RIGHT_1, R_REGEN)) curp->s_hpt++;
-	if (ISRING(RIGHT_2, R_REGEN)) curp->s_hpt++;
-	if (ISRING(RIGHT_3, R_REGEN)) curp->s_hpt++;
-	if (ISRING(RIGHT_4, R_REGEN)) curp->s_hpt++;
+	if (curp->s_lvl > 10)
+	    limit = 2;
+	else
+	    limit = rnd(limit/6) + 1;
+	if (ISRING(LEFT_1, R_REGEN)) curp->s_hpt += limit;
+	if (ISRING(LEFT_2, R_REGEN)) curp->s_hpt += limit;
+	if (ISRING(LEFT_3, R_REGEN)) curp->s_hpt += limit;
+	if (ISRING(LEFT_4, R_REGEN)) curp->s_hpt += limit;
+	if (ISRING(RIGHT_1, R_REGEN)) curp->s_hpt += limit;
+	if (ISRING(RIGHT_2, R_REGEN)) curp->s_hpt += limit;
+	if (ISRING(RIGHT_3, R_REGEN)) curp->s_hpt += limit;
+	if (ISRING(RIGHT_4, R_REGEN)) curp->s_hpt += limit;
     }
     if (on(*tp, ISREGEN))
 	curp->s_hpt += curp->s_lvl/5 + 1;

@@ -48,12 +48,10 @@ packweight()
 	    obj = OBJPTR(pc);
 	    weight += itemweight(obj) * obj->o_count;
 	}
-	if(weight < 0)		/* in case of artifacts */
+	if(ISWEARING(R_CARRYING))
+	    weight -= (ring_value(R_CARRYING) * weight) / 4;
+	if(weight < 0)		/* in case of artifacts and stuff */
 	     weight = 0;
-	if(ISWEARING(R_HEAVY) && !ISWEARING(R_NEGWEIGHT))
-	    weight += weight / 4;
-	else if (ISWEARING(R_NEGWEIGHT))
-	    weight -= weight / 3;
 
 	return(weight);
 }

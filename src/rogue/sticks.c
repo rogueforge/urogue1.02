@@ -538,6 +538,73 @@ bool blessed;
 	    }
 	    light(&hero);
 	}
+	when WS_BLAST: {
+	    register char ch;
+	    register struct linked_list *item, *ip;
+	    register struct object *obj, *op;    
+	    register struct trap *trp;
+
+	    item = spec_item(WEAPON, GRENADE, 0, 0);
+	    obj = (struct object *) ldata(item);
+	    obj->o_count = 1;
+	    obj->o_flags |= ISKNOW;
+	    msg("BOOOM!");
+	    aggravate();
+	    obj->o_pos.x = hero.x;
+	    obj->o_pos.y = hero.y;
+	    for ( ; ; ) {
+		obj->o_pos.y += delta.y;
+		obj->o_pos.x += delta.x;
+		if (!ce(obj->o_pos, hero) &&
+			cansee(unc(obj->o_pos)) &&
+			mvwinch(cw, obj->o_pos.y, obj->o_pos.x) != ' ') {
+		    mvwaddch(cw, obj->o_pos.y, obj->o_pos.x, 
+		   		show(obj->o_pos.y, obj->o_pos.x));
+		}
+		if (shoot_ok(ch = winat(obj->o_pos.y, obj->o_pos.x)) 
+			&& ch != DOOR && !ce(obj->o_pos, hero)) {
+		    if (cansee(unc(obj->o_pos)) && 
+			    ntraps + 1 < MAXTRAPS + MAXTRAPS &&
+			    mvwinch(cw, obj->o_pos.y, obj->o_pos.x) != ' ') {
+			mvwaddch(cw, obj->o_pos.y, obj->o_pos.x, TRAPDOOR);
+			draw(cw);
+		    }
+		    if (isatrap(ch)) {
+			trp = trap_at(obj->o_pos.y, obj->o_pos.x);
+			if (trp != NULL) {
+			    trp->tr_type = TRAPDOOR;
+			    trp->tr_flags |= ISFOUND;
+			    trp->tr_show = TRAPDOOR;
+			}
+		    }
+		    else if (isalpha(ch)) 
+			hit_monster(unc(obj->o_pos), obj, &player);
+		    else if ((ch == FLOOR || ch == PASSAGE)
+			     && ntraps + 1 < MAXTRAPS + MAXTRAPS) {
+			mvaddch(obj->o_pos.y, obj->o_pos.x, TRAPDOOR);
+			traps[ntraps].tr_type = TRAPDOOR;
+			traps[ntraps].tr_flags = ISFOUND;
+			traps[ntraps].tr_show = TRAPDOOR;
+			traps[ntraps].tr_pos.y = obj->o_pos.y;
+			traps[ntraps++].tr_pos.x = obj->o_pos.x;
+		    }
+		    else if (ch == POTION || ch == SCROLL || ch == FOOD
+			    || ch == WEAPON || ch == RING || ch == ARMOR
+			    || ch == STICK || ch == ARTIFACT || ch == GOLD) {
+			if ((ip = find_obj(obj->o_pos.y, obj->o_pos.x))
+					!= NULL) {
+			    detach(lvl_obj, ip);
+			    discard(ip);
+			}
+			mvaddch(obj->o_pos.y, obj->o_pos.x,
+				roomin(&obj->o_pos) == NULL ? PASSAGE : FLOOR);
+		    }
+		    continue;
+		}
+		break;
+	    }
+	    discard(item);
+	}
 	otherwise:
 	    msg("What a bizarre schtick!");
     }

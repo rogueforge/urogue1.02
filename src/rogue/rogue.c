@@ -158,6 +158,7 @@ struct init_weps weaps[MAXWEAPONS] = {
     { "pertuska",	"2d5",  "1d3", NONE,		ISMETAL, 160, 10 },
     { "sabre",		"2d6",	"1d3", NONE,		ISMETAL, 120, 20},
     { "cutlass",	"1d10", "1d2", NONE,		ISMETAL, 55, 12 },
+    { "grenade",	"1d1", "1d2/4d8", NONE,		ISMANY, 10, 3 },
 };
 
 struct init_armor armors[MAXARMORS] = {
@@ -246,10 +247,10 @@ struct magic_item r_magic[MAXRINGS] = {
     { "add intelligence",	 60, 240, 33, 25 },
     { "increase wisdom",	 60, 220, 33, 25 },
     { "sustain health",		 60, 250, 0,  0 },
-    { "burden",			 20, 100, 100, 0 },
+    { "vampiric regeneration",	 20, 800, 25, 10 },
     { "illumination",		 20, 200, 0, 0 },
     { "delusion",		 20, 100, 75, 0 },
-    { "carrying",		 20, 200, 0, 0 },
+    { "carrying",		 20, 200, 30, 0 },
     { "adornment",		 15, 1000, 0, 0 },
     { "levitation",		 20, 150, 0, 0 },
     { "fire resistance",	 10, 250, 0, 0 },
@@ -264,24 +265,25 @@ struct magic_item r_magic[MAXRINGS] = {
 
 struct magic_item ws_magic[MAXSTICKS] = {
     { "light",			 90, 120, 20, 20 },
-    { "striking",		 60, 115, 0, 0 },
+    { "striking",		 58, 115, 0, 0 },
     { "lightning",		 25, 200, 0, 0 },
     { "fire",			 25, 200, 0, 0 },
     { "cold",			 30, 200, 0, 0 },
     { "polymorph",		 90, 210, 0, 0 },
     { "magic missile",		 90, 170, 0, 0 },
-    { "slow monster",		 80, 220, 25, 20 },
+    { "slow monster",		 76, 220, 25, 20 },
     { "drain life",		 90, 210, 20, 0 },
     { "charging",		 70, 100, 0, 0 },
     { "teleport monster",	 90, 140, 25, 20 },
-    { "cancellation",		 40, 130, 0, 0 },
+    { "cancellation",		 38, 130, 0, 0 },
     { "confuse monster",   	 50, 100, 0, 0},
     { "disintegration",	  	 10, 150, 33, 0},
     { "anti-matter",		 30, 180, 0, 0},
-    { "paralyze monster",	 40, 180, 0, 0},
+    { "paralyze monster",	 38, 180, 0, 0},
     { "degenerate monster",	 30, 200, 30, 0},
     { "nothing",		 30, 100, 0, 0},
     { "invisibility",		 30, 150, 30, 5},
+    { "blasting",		 10, 220, 0, 0},
 };
 
 struct magic_item fd_data[MAXFOODS] = {

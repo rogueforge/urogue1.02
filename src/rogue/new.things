@@ -782,3 +782,19 @@
 5)	entering a room through a secret door while phased is supposed to
 	light the room (dan@ciprico)
 6)	trying to dip where there's no pool gives wrong message
+
+1.02 Delta, July 30, 85
+1)	added support for news option in command line
+2)	quit signals produce core files only in wizard mode
+3)	wearing a ring of adornment adds 4 to number of transactions
+	allowed in trading posts
+4)	ring of burden deleted and replaced by ring of vampiric regeneration
+5)	ring of carrying comes in various degrees now and cursed is like
+	the ring of burden used to be
+6)	ring of vampiric regeneration restores amount of damage done to
+	monster to player, sort of like a vampire does
+7)	ring of regeneration hit points now made somewhat experience
+	level dependent
+8)	food consumption of the regeneration rings make experience
+	level dependent
+9)	wand of blasting and grenades implemented

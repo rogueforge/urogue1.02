@@ -993,7 +993,12 @@ struct object *cur_weapon;
 		creat_mons(def_er, def_er->t_index, FALSE);
 	    }
 
-	    def->s_hpt -= max(0, damage);	/* Do the damage */
+	    damage = max(0, damage);
+	    def->s_hpt -= damage;	/* Do the damage */
+	    if (att_er == &player && ISWEARING(R_VREGEN)) {
+		damage = (ring_value(R_VREGEN) * damage) / 3;
+		pstats.s_hpt = min(max_stats.s_hpt, pstats.s_hpt + damage);
+	    }
 	    did_hit = TRUE;
 	}
 	if (cp == NULL || (cp = strchr(cp, '/')) == NULL)

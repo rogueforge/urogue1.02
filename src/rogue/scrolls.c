@@ -565,6 +565,8 @@ pet_message:	    msg("The dungeon begins to rumble and shake!");
 				    pstats.s_intel += howmuch;
 				when R_ADDWISDOM:
 				    pstats.s_wisdom += howmuch;
+				when R_CARRYING:
+				    updpack(FALSE);
 				default:
 				    ;
 			     }

@@ -7,6 +7,7 @@
 
 #if	defined(BSD4)
 #define	strchr	index
+#define	strrchr	rindex
 #define srand48	srandom
 #define lrand48	random
 #endif

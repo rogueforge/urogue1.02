@@ -72,9 +72,7 @@ ring_on()
 	    }
 	when R_AGGR:
 	    aggravate();
-	when R_HEAVY:
-	    updpack(FALSE);
-	when R_NEGWEIGHT:
+	when R_CARRYING:
 	    updpack(FALSE);
 	when R_LEVITATION:
 	    msg("You begin to float in the air!");
@@ -148,7 +146,8 @@ register int hand;
 	return 0;
     switch (cur_ring[hand]->o_which) {
 	case R_REGEN:
-	    return 2;
+	case R_VREGEN:
+	    return rnd(pstats.s_lvl > 10 ? 10 : pstats.s_lvl);
 	case R_ALERT:
 	case R_SUSABILITY:
 	    return 1;
@@ -186,6 +185,8 @@ register struct object *obj;
 	case R_ADDHIT:
 	case R_ADDINTEL:
 	case R_ADDWISDOM:
+	case R_CARRYING:
+	case R_VREGEN:
 	case R_RESURRECT:
 	case R_TELCONTROL:
 	    buf[0] = ' ';
@@ -195,7 +196,6 @@ register struct object *obj;
 	    strcpy(&buf[1], num(obj->o_ac < 0 ? obj->o_ac : obj->o_ac - 1, 0));
 	when R_AGGR:
 	case R_LIGHT:
-	case R_HEAVY:
 	case R_TELEPORT:
 	    if (obj->o_flags & ISCURSED)
 		return " cursed";

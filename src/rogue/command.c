@@ -292,6 +292,7 @@ command()
 			   if(canwizard) {
 				    msg("Welcome, oh mighty wizard.");
 				    wizard = waswizard = TRUE;
+				    (void) signal(SIGQUIT, SIG_DFL);
 			   }
 			   else
 				msg("Try it again.");

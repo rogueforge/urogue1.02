@@ -212,12 +212,14 @@ sell_it()
  */
 open_market()
 {
-	if (trader >= MAXPURCH && !wizard) {
+	register int maxtrans;
+
+	maxtrans = ISWEARING(R_ADORNMENT) ? MAXPURCH + 4 : MAXPURCH;
+	if (wizard || trader < maxtrans)
+	    return TRUE;
+	else {
 	    msg("The market is closed. The stairs are that-a-way.");
 	    return FALSE;
-	}
-	else {
-	    return TRUE;
 	}
 }
 
@@ -327,9 +329,11 @@ reg struct object *obj;
  */
 trans_line()
 {
+	reg int adorned = ISWEARING(R_ADORNMENT);
+
 	if (!wizard)
 	    sprintf(prbuf,"You have %d transactions remaining.",
-		    MAXPURCH - trader);
+		(adorned ? MAXPURCH + 4 : MAXPURCH) - trader);
 	else
 	    sprintf(prbuf,
 		"You have infinite transactions remaining oh great wizard.");

@@ -39,6 +39,16 @@ char	LOADAV_PROG[]	=	"/usr/local/la";
 char	UTMP[]		=	"/etc/utmp";
 
 /*
+ * File where news is kept
+ */
+char	NEWS[]		=	ROGUEPATH(tidy.news);
+
+/*
+ * Name of pager routine for news
+ */
+char	PAGER[]		=	"/bin/cat";
+
+/*
  * Name of player definitions file
  */
 char	ROGDEFS[]	=	".rog_defs";
