@@ -914,6 +914,9 @@ shell()
 	crmode();
 	in_shell = FALSE;
 	wait_for('\n');
+#if defined(USGV3)
+	nonl();
+#endif
 	clearok(cw, TRUE);
 	touchwin(cw);
     }

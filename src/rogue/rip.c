@@ -175,6 +175,10 @@ short monst;
 #if defined(BSD4)
     (void) TtySetOriginalChars();
 #endif
+#if defined(USGV3) || defined(USGV5)
+    noraw();
+    nl();
+#endif
     if (flags != WINNER && flags != TOTAL && flags != SCOREIT) {
 	if (flags == CHICKEN)
 	    packend = "when you quit";

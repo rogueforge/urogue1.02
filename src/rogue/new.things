@@ -767,3 +767,8 @@
 3)	a blessed scroll of magic mapping show traps and such too
 4)	monsters stepping into firetraps while hero isn't in room
 	also marks the room as lit
+
+1.02 Delta July 28, 85
+1)	sys3 support added, courtesy dan@ciprico
+2)	new random number routines added to the optional files
+	for people without srandom and random
