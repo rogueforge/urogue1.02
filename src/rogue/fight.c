@@ -344,7 +344,7 @@ bool thrown;
 	     * or cause it to begin ringing if they are strong enough
 	     */
 	    if (cur_armor != NULL && cur_armor->o_which == CRYSTAL_ARMOR) {
-		if (rnd(mp->t_stats.s_str) > 20) {
+		if (rnd(mp->t_stats.s_str + (cur_armor->o_ac/2)) > 20) {
 
 		    register struct linked_list *item;
 		    register struct object *obj;

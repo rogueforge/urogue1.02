@@ -641,3 +641,7 @@
 1)	check for monster wielding a weapon didn't check for null pointer
 2)	changed #include "stdio.h" to <stdio.h> in save.c
 3)	include mach_dep.h in io.c, save.c, and wizard.c
+
+1.02 Beta June 6/85
+1)	shattering of crystalline armor when hit hard is less likely
+	when armor is well enchanted
