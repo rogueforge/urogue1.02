@@ -180,6 +180,9 @@ sell_it()
 	if (wo <= 0) {
 	    mpos = 0;
 	    msg("We don't buy those.");
+	    if (ISWEARING(R_ADORNMENT) && rnd(7) < 3)
+		msg("How about that %s ring instead?", 
+			r_stones[R_ADORNMENT]);
 	    return;
 	}
 	if (wo < 25)
@@ -192,6 +195,9 @@ sell_it()
 		ch = tolower(ch);
 	    if (ch == ESCAPE || ch == 'n') {
 		msg("");
+		if (ISWEARING(R_ADORNMENT) && rnd(7) < 3)
+		    msg("How about that %s ring instead?", 
+			r_stones[R_ADORNMENT]);
 		return;
 	    }
 	} until (ch == 'y');
@@ -333,7 +339,7 @@ trans_line()
 
 	if (!wizard)
 	    sprintf(prbuf,"You have %d transactions remaining.",
-		(adorned ? MAXPURCH + 4 : MAXPURCH) - trader);
+		max(0,(adorned ? MAXPURCH + 4 : MAXPURCH) - trader));
 	else
 	    sprintf(prbuf,
 		"You have infinite transactions remaining oh great wizard.");

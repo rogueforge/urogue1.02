@@ -798,3 +798,10 @@
 8)	food consumption of the regeneration rings make experience
 	level dependent
 9)	wand of blasting and grenades implemented
+
+1.02	August 9, 85
+1)	baseline release for urogue
+2)	friendly fiend wants a ring of adornment
+3)	player startup body AC initialized wrong
+4)	negative transaction count after selling ring of adornment fixed
+5)	fixed opening of authors file
