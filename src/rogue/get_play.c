@@ -150,8 +150,14 @@ again:
 	max_stats.s_hpt = pstats.s_hpt = def_array[i][I_HITS];
 	player.t_ctype = def_array[i][I_CHAR];
 	player.t_quiet = 0;
-	pstats.s_dmg = "1d4" ;
-	pstats.s_arm = 10 ;
+	if (player.t_ctype == C_FIGHTER) {
+	    pstats.s_dmg = "2d4" ;
+	    pstats.s_arm = 8 ;
+	}
+	else {
+	    pstats.s_dmg = "1d4" ;
+	    pstats.s_arm = 10 ;
+	}
 	max_stats = pstats ;
 	pack = NULL;
 	pstats.s_carry = totalenc();

@@ -943,7 +943,7 @@ struct object *cur_weapon;
 	if (def == &pstats)
 	{
 	    if (cur_armor != NULL)
-		def_arm = cur_armor->o_ac;
+		def_arm = cur_armor->o_ac - 10 + pstats.s_arm;
 	    else
 		def_arm = def->s_arm;
 	    def_arm -= ring_value(R_PROTECT);

@@ -133,6 +133,8 @@ bool blessed;
 		    add_strength(FALSE);
 		    add_wisdom(FALSE);
 		    add_const(FALSE);
+		    if (rnd(5) > 2)
+			pstats.s_arm--;
 		}
 		/* probably will be own ability */
 		else {

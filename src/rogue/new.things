@@ -750,3 +750,11 @@
 3)	no message of rust vanishing from your armor if it is
 	inherently rustproof
 4)	fixed grammar on messages about falling through various traps
+
+1.02 Gamma July 23, 85
+1)	changed code to ensure quartermasters sell things at positive
+	cost only
+2)	quaffing a blessed potion of gain ability sometimes increases
+	the player's body AC as well
+3)	fixed initialization code for fighters to give them extra
+	body AC and also more damage from bare handed attack
