@@ -267,12 +267,6 @@ reg struct object *obj;
 			worth *= 2;
 		    if (obj->o_flags & ISPOISON)
 			worth *= 2;
-		    if (obj->o_flags & (CANRETURN | ISOWNED))
-			worth *= 4;
-		    else if (obj->o_flags & CANRETURN)
-			worth *= 2;
-		    else if (obj->o_flags & ISLOST)
-			worth /= 3;
 		    if (obj->o_flags & ISZAPPED)
 			worth += 20 * obj->o_charges;
 		}
@@ -309,6 +303,12 @@ reg struct object *obj;
 	    worth = worth * 3 / 2;
 	if (obj->o_flags & ISCURSED)	/* half for cursed */
 	    worth /= 2;
+	if (obj->o_flags & (CANRETURN | ISOWNED))
+	    worth *= 4;
+	else if (obj->o_flags & CANRETURN)
+	    worth *= 2;
+	else if (obj->o_flags & ISLOST)
+	    worth /= 3;
 	if (worth < 0)
 	    worth = 0;
 	return worth;

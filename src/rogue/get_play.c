@@ -189,7 +189,7 @@ int	arm, wpt, hpadd, dmadd;
 	bool	no_write;
 
 	strcpy(char_file,home);
-	strcat(char_file,".rog_defs");
+	strcat(char_file, ROGDEFS );
 
 	no_write = FALSE;
 	wclear(hw);

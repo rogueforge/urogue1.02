@@ -24,10 +24,14 @@ register bool drop;
     {
 	when SCROLL:
 	    if (obj->o_count == 1)
-		 sprintf(prbuf, "A %sscroll ", blesscurse(obj->o_flags));
+		 sprintf(prbuf, "A %s%sscroll ", 
+			obj->o_flags & CANRETURN ? "claimed " : "", 
+			blesscurse(obj->o_flags));
 	    else
-		 sprintf(prbuf, "%d %sscrolls ", 
-			obj->o_count, blesscurse(obj->o_flags));
+		 sprintf(prbuf, "%d %s%sscrolls ", 
+			obj->o_count, 
+			obj->o_flags & CANRETURN ? "claimed " : "", 
+			blesscurse(obj->o_flags));
 	    pb = &prbuf[strlen(prbuf)];
 	    if (s_know[obj->o_which] || (obj->o_flags & ISPOST))
 		sprintf(pb, "of %s", s_magic[obj->o_which].mi_name);
@@ -37,10 +41,14 @@ register bool drop;
 		sprintf(pb, "titled '%s'", s_names[obj->o_which]);
         when POTION:
 	    if (obj->o_count == 1)
-		 sprintf(prbuf, "A %spotion ", blesscurse(obj->o_flags));
+		 sprintf(prbuf, "A %s%spotion ", 
+			obj->o_flags & CANRETURN ? "claimed " : "", 
+			blesscurse(obj->o_flags));
 	    else
-		 sprintf(prbuf, "%d %spotions ", 
-			obj->o_count, blesscurse(obj->o_flags));
+		 sprintf(prbuf, "%d %s%spotions ", 
+			obj->o_count, 
+			obj->o_flags & CANRETURN ? "claimed " : "", 
+			blesscurse(obj->o_flags));
 	    pb = &prbuf[strlen(prbuf)];
 	    if (p_know[obj->o_which] || (obj->o_flags & ISPOST))
 		sprintf(pb, "of %s(%s)", p_magic[obj->o_which].mi_name,
@@ -51,20 +59,25 @@ register bool drop;
 	    else {
 		if (obj->o_count == 1)
 		    sprintf(prbuf, "A%s %s potion",
+			    obj->o_flags & CANRETURN ? " claimed" : 
 			    vowelstr(p_colors[obj->o_which]),
 			    p_colors[obj->o_which]);
 		else
-		    sprintf(prbuf, "%d %s potions",
-			    obj->o_count, p_colors[obj->o_which]);
+		    sprintf(prbuf, "%d %s%s potions",
+			    obj->o_count, 
+			    obj->o_flags & CANRETURN ? "claimed " : "", 
+			    p_colors[obj->o_which]);
 	    }
 	when FOOD:
 	    if (obj->o_count == 1)
 		sprintf(prbuf, "A%s %s", 
-				vowelstr(fd_data[obj->o_which]), 
-				fd_data[obj->o_which]);
+			obj->o_flags & CANRETURN ? " claimed" : 
+			vowelstr(fd_data[obj->o_which].mi_name), 
+			fd_data[obj->o_which].mi_name);
 	    else
-		sprintf(prbuf, "%d %ss", obj->o_count,
-				fd_data[obj->o_which]);
+		sprintf(prbuf, "%d %s%ss", obj->o_count,
+			obj->o_flags & CANRETURN ? "claimed " : "", 
+			fd_data[obj->o_which].mi_name);
 	when WEAPON:
 	    if (obj->o_count > 1)
 		sprintf(prbuf, "%d ", obj->o_count);
@@ -92,15 +105,21 @@ register bool drop;
 		strcat(prbuf, "s");
 	when ARMOR:
 	    if ((obj->o_flags & ISKNOW) || (obj->o_flags & ISPOST))
-		sprintf(prbuf, "%s %s",
+		sprintf(prbuf, "%s%s %s",
+		    obj->o_flags & CANRETURN ? "claimed " : "", 
 		    num(armors[obj->o_which].a_class - obj->o_ac, 0),
 		    armors[obj->o_which].a_name);
 	    else
-		sprintf(prbuf, "%s", armors[obj->o_which].a_name);
+		sprintf(prbuf, "%s%s", 
+		    obj->o_flags & CANRETURN ? "claimed " : "", 
+		    armors[obj->o_which].a_name);
 	when ARTIFACT:
 	    sprintf(prbuf, "the %s", arts[obj->o_which].ar_name);
+	    if (obj->o_flags & CANRETURN)
+		strcat(prbuf, " (claimed)");
 	when STICK:
-	    sprintf(prbuf, "A %s%s ", 
+	    sprintf(prbuf, "A %s%s%s ", 
+		obj->o_flags & CANRETURN ? "claimed " : "", 
 		blesscurse(obj->o_flags), ws_type[obj->o_which]);
 	    pb = &prbuf[strlen(prbuf)];
 	    if (ws_know[obj->o_which] || (obj->o_flags & ISPOST))
@@ -110,17 +129,23 @@ register bool drop;
 		sprintf(pb, "called %s(%s)", ws_guess[obj->o_which],
 		    ws_made[obj->o_which]);
 	    else
-		sprintf(&prbuf[2], "%s %s", ws_made[obj->o_which],
+		sprintf(&prbuf[2], "%s%s %s", 
+		    obj->o_flags & CANRETURN ? "claimed " : "", 
+		    ws_made[obj->o_which],
 		    ws_type[obj->o_which]);
         when RING:
 	    if (r_know[obj->o_which] || (obj->o_flags & ISPOST))
-		sprintf(prbuf, "A%s ring of %s(%s)", ring_num(obj),
+		sprintf(prbuf, "A%s%s ring of %s(%s)", 
+		    obj->o_flags & CANRETURN ? "claimed " : "", ring_num(obj),
 		    r_magic[obj->o_which].mi_name, r_stones[obj->o_which]);
 	    else if (r_guess[obj->o_which])
-		sprintf(prbuf, "A ring called %s(%s)",
+		sprintf(prbuf, "A %sring called %s(%s)",
+		    obj->o_flags & CANRETURN ? "claimed " : "",
 		    r_guess[obj->o_which], r_stones[obj->o_which]);
 	    else
-		sprintf(prbuf, "A%s %s ring", vowelstr(r_stones[obj->o_which]),
+		sprintf(prbuf, "A%s %s ring", 
+		    obj->o_flags & CANRETURN ? "claimed " : 
+		    vowelstr(r_stones[obj->o_which]),
 		    r_stones[obj->o_which]);
 	otherwise:
 	    debug("Picked up something funny");

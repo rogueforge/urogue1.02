@@ -649,7 +649,7 @@ pet_message:	    msg("The dungeon begins to rumble and shake!");
 	    struct object *lb;
 	    if (is_scroll && s_know[S_OWNERSHIP] == FALSE)
 	        msg("You are granted the power of ownership.");
-	    if ((ll = get_item("claim",WEAPON)) != NULL) {
+	    if ((ll = get_item("claim",0)) != NULL) {
 		lb = OBJPTR(ll);
 		if (cursed && lb->o_flags & (ISOWNED | CANRETURN)) {
 		    lb->o_flags &= ~(ISOWNED | CANRETURN);

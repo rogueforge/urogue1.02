@@ -630,3 +630,9 @@
 2)	nymphs now attack whenever possible
 3)	monsters ignore rust traps now
 4)	changed help for 'f' and 'F' commands slightly
+
+1.02 Beta June 3/85
+1)	missed change of ".rog_defs" to ROGDEFS 
+	(thanx jason%ucblilac.CC@berkeley.arpa)
+2)	anything can be claimed now.  inventory names and worth of objects
+	changed to reflect this
