@@ -514,7 +514,7 @@ pet_message:	    msg("The dungeon begins to rumble and shake!");
 		switch(lb->o_type) {
 		    when RING:
 			lb->o_ac += howmuch;
-			if (lb->o_ac > 4 && rnd(5) == 0) {
+			if (lb->o_ac > 5 && rnd(5) == 0) {
 			    msg("Your ring explodes in a cloud of smoke.");
 			    lb->o_flags &= ~ISCURSED;
 			    dropcheck(lb);

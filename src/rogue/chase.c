@@ -350,6 +350,7 @@ register bool flee;
     /* If we can breathe, we may do so */
     else if (on(*tp, CANBREATHE) && (shoot_dir = can_shoot(er, ee)) &&
 	     (rnd(100) < 67) &&
+	     (off(player, ISDISGUISE) || (rnd(tp->t_stats.s_lvl) > 6)) &&
 	     (DISTANCE(er->y, er->x, ee->y, ee->x) < BOLT_LENGTH*BOLT_LENGTH)) {
 		register short chance;
 		register char *breath;
@@ -448,7 +449,8 @@ register bool flee;
      * enough
      */
     else if((off(*tp, ISFLEE) || rnd(DISTANCE(er->y,er->x,ee->y,ee->x)) > 2) && 
-	     on(*tp, CANSHOOT) &&
+	     on(*tp, CANSHOOT) && (off(player, ISDISGUISE) || 
+	     (rnd(tp->t_stats.s_lvl) > 6)) &&
 	    (shoot_dir = can_shoot(er, ee)) &&
 	    (weapon = get_hurl(tp))) {
 		missile(shoot_dir->y, shoot_dir->x, weapon, tp);
@@ -490,10 +492,11 @@ register bool flee;
 		    continue;
 
 		/* Don't try the player if not going after the player */
-		/* or he's disguised */
+		/* or he's disguised  and monster is dumb */
 		if ( ((off(*tp, ISFLEE) && !ce(hero, *ee)) ||
-			on(player, ISDISGUISE) ) &&
-			x == hero.x && y == hero.y)
+			(on(player, ISDISGUISE) && 
+				(rnd(tp->t_stats.s_lvl) < 6)))
+			&& x == hero.x && y == hero.y)
 		    continue;
 
 		tryp.x = x;

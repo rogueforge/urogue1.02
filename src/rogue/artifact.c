@@ -741,7 +741,7 @@ struct object *tr;
 		    return;
 		}
 		msg("Your %s glows bright red for a moment.", 
-			inv_name(cur_weapon, FALSE));
+			weaps[cur_weapon->o_which].w_name);
 	        if (cur_weapon->o_hplus > 0)
 		    cur_weapon->o_hplus = -rnd(3);
 		else

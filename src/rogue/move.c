@@ -531,6 +531,7 @@ register coord *tc;
 		(ch == BEARTRAP || ch == MAZETRAP || ch == TRAPDOOR
 			|| ch == ARROWTRAP || ch == DARTTRAP)) {
 	    msg(tr_name(ch));
+	    tp->tr_flags |= ISFOUND;
 	    return (ch); 
 	}
 	if (moving)
