@@ -246,7 +246,7 @@ struct linked_list *item;
         if (op->o_type != ARTIFACT)
 	    fall(obj,FALSE);
 	else {
-	    msg("You'll be sorry you ever sold that!");
+	    msg("You'll be sorry you ever got rid of that!");
 	    has_artifact &= ~(1 << op->o_which);
 	    discard(obj);
 	    obj == NULL;

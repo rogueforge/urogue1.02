@@ -147,4 +147,44 @@ char	*longname(), *getcap();
  */
 #define	unctrl(c)	_unctrl[(c) & 0177]
 extern char *_unctrl[];
+
+/*
+ * This is a hack,  pure and simple to allow for
+ * tty magic in BSD unix (USGV4)
+ *
+ * I basically need to have all calls that change the tty state
+ * to pass though my hands (in usgv4.c).
+ */
+#ifdef	USGV4
+/*
+ * Set these routines to point to my routines
+ */
+#undef raw
+#undef noraw
+#undef crmode
+#undef nocrmode
+#undef echo
+#undef noecho
+#undef nl
+#undef nonl
+#undef  savetty
+#undef  resetty
+
+#undef  initscr
+#undef  endwin
+
+#define raw     myraw
+#define noraw   mynoraw
+#define crmode  mycrmode
+#define nocrmode	mynocrmode
+#define echo    myecho
+#define noecho  mynoecho
+#define nl      mynl
+#define nonl    mynonl
+#define savetty mysavetty
+#define resetty myresetty
+
+#define initscr myinitscr
+#define endwin  myendwin
+#endif USGV4
 # endif

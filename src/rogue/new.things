@@ -645,3 +645,19 @@
 1.02 Beta June 6/85
 1)	shattering of crystalline armor when hit hard is less likely
 	when armor is well enchanted
+
+1.02 Beta June 7/85
+1)	check for null pointer to damage string in determining how much
+	damage a blow or weapon striking does
+2)	added code from jason@ucblilac.CC@berkeley.arpa for support
+	of job control and tty interfacing for 4.x bsd systems
+3)	quaffing non-cursed potion of super heroism removes fear and
+	also prevents it until super heroism wears off
+4)	corrected oversights in jason's code for when terminating
+	by various legal means
+5)	generalized message for selling/dropping artifact in trading post
+6)	prices of objects in trading posts are now fixed at object creation
+	time
+7)	algorithm for randomizing prices by quartermasters and in trading 
+	posts changed
+8)	prices as determined by bad luck made worse

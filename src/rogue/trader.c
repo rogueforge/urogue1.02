@@ -7,6 +7,7 @@
 #include "curses.h"
 #include "rogue.h"
 #include <ctype.h>
+#define  o_tradevalue  art_stats.ar_flags
 
 /*
  * do_post:
@@ -15,7 +16,7 @@
 do_post()
 {
 	coord tp;
-	reg int i;
+	reg int i, worth;
 	reg struct room *rp;
 	reg struct object *op;
 	reg struct linked_list *ll;
@@ -54,6 +55,14 @@ do_post()
 		rnd_pos(rp,&tp);
 	    } until (mvinch(tp.y, tp.x) == FLOOR);
 	    op->o_pos = tp;
+	    worth = get_worth(op);
+	    if (worth <= 0 && luck > 0)
+		worth = rnd(luck * 100) + 50;
+	    else if (worth < 25)
+		worth = 25;
+	    worth *= luck + 3;				/* slightly expensive */
+	    worth = (worth/2) + (roll(6,worth)/6);	/* and randomized */
+	    op->o_tradevalue = worth;
 	    mvaddch(tp.y,tp.x,op->o_type);
 	}
 	trader = 0;
@@ -87,15 +96,11 @@ price_it()
 	if ((item = find_obj(hero.y,hero.x)) == NULL)
 	    return FALSE;
 	obj = OBJPTR(item);
-	worth = get_worth(obj);
+	worth = obj->o_tradevalue;
 	if (worth < 0) {
 	    msg("That's not for sale.");
 	    return FALSE;
 	}
-	if (worth < 25)
-	    worth = 25;
-	worth *= luck + 3;		/* slightly expensive */
-	worth = (worth/2) + rnd(worth); /* and randomized */
 	str = typ_name(obj);
 	msg("That %s is a %s for only %d pieces of gold.",str,
 	    bargain[rnd(3)],worth);

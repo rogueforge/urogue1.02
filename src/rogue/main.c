@@ -167,6 +167,9 @@ char **envp;
     init_colors();			/* Set up colors of potions */
     init_stones();			/* Set up stone settings of rings */
     init_materials();			/* Set up materials of wands */
+#ifdef USGV4
+    (void) TtyInit();			/* Set up for the tty magic */
+#endif
     initscr();				/* Start up cursor package */
     init_names();			/* Set up names of scrolls */
     setup();
@@ -302,6 +305,9 @@ char *s;
     draw(stdscr);
     endwin();
     printf("\n");	/* So the cursor doesn't stop at the end of the line */
+#ifdef USGV4
+    (void) TtySetOriginalChars();
+#endif
     exit(0);
 }
 
@@ -332,33 +338,19 @@ register int number, sides;
 }
 
 
-/*
- * handle stop and start signals
-tstp()
-{
-    mvcur(0, COLS - 1, LINES - 1, 0);
-    endwin();
-    fflush(stdout);
-    signal(SIGTSTP, SIG_IGN);
-    kill(0, SIGTSTP);
-    signal(SIGTSTP, tstp);
-    crmode();
-    noecho();
-    clearok(curscr, TRUE);
-    touchwin(cw);
-    draw(cw);
-    flushout();
-}  */
-
 setup()
 {
     int  checkout();
-    int  tstp();
+#ifdef USGV4
+    int  tstop();
+#endif
 
     areuok();      /**void agin **/
     signal(SIGHUP, auto_save);
     signal(SIGINT, quit);
-    signal(SIGTSTP, tstp);
+#ifdef USGV4
+    signal(SIGTSTP, tstop);
+#endif
 
     if (!author())
     {
@@ -490,6 +482,9 @@ checkout()
 		if (file_name[0] != '\0' 
 			&& (savef = fopen(file_name, "w")) != NULL)
 		    save_file(savef);
+#ifdef USGV4
+		(void) TtySetOriginalChars();
+#endif
 		exit(1);
 	    }
 	    checktime = CHECKTIME / (2 * (num_checks + 1));

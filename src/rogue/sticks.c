@@ -863,10 +863,13 @@ at_hero:
 				if (!(on(player, ISFLEE) &&
 				      (player.t_dest == &shooter->t_pos)) &&
 				    (shooter != &player)) {
-				    turn_on(player, ISFLEE);
-				    player.t_dest = &shooter->t_pos;
-				    msg("The fear gas terrifies you.",
-					monsters[shooter->t_index].m_name);
+				    if (off(player, SUPERHERO)) {
+					turn_on(player, ISFLEE);
+					player.t_dest = &shooter->t_pos;
+					msg("The fear gas terrifies you.");
+				    }
+				    else
+					msg("The fear gas has no effect.");
 				}
 			    }
 			}

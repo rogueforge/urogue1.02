@@ -522,9 +522,14 @@ bool thrown;
 			 -5 : 0)) 
 		    && !(on(player, ISFLEE) 
 		    && (player.t_dest == &mp->t_pos))) {
-			turn_on(player, ISFLEE);
-			player.t_dest = &mp->t_pos;
-			msg("The %s's touch terrifies you.", mname);
+			if (off(player, SUPERHERO)) {
+			    turn_on(player, ISFLEE);
+			    player.t_dest = &mp->t_pos;
+			    msg("The %s's touch terrifies you.", mname);
+			}
+			else
+			    msg("The %s's touch feels cold and clammy.",
+					mname);
 		}
 	    }
 
@@ -917,10 +922,11 @@ struct object *cur_weapon;
 	    dplus += ring_value(R_ADDDAM);
 	}
 	ndice = atoi(cp);
-	if ((cp = strchr(cp, 'd')) == NULL)	/* strchr was index */
+	if (cp == NULL || (cp = strchr(cp, 'd')) == NULL)
 	    break;
 	nsides = atoi(++cp);
-	if ((cp = strchr(cp, '+')) != NULL) nplus = atoi(++cp);
+	if (cp != NULL && (cp = strchr(cp, '+')) != NULL) 
+	    nplus = atoi(++cp);
 	else nplus = 0;
 
 	if (def == &pstats)

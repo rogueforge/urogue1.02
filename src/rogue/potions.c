@@ -484,6 +484,10 @@ bool blessed;
 		}
 	    }
 	    else {
+		if (on(player, ISFLEE)) {
+		    turn_off(player, ISFLEE);
+		    msg("You regain your composure.");
+		}
 		if (on(player, ISUNHERO)) {
 		    extinguish(shero);
 		    shero();

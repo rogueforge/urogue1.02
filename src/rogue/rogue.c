@@ -431,6 +431,9 @@ struct h_list helpstr[] = {
     '=',	"	listen for monsters",
     'f',	"<dir>	fight monster",
     'F',	"<dir>	fight monster to the death",
+#ifdef USGV4
+    '&',	"	temporarily suspend game",
+#endif
 /*
  * Wizard commands.  Identified by (h_ch != 0 && h_desc == 0).
  */

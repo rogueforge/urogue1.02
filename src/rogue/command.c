@@ -270,6 +270,9 @@ command()
 			wclear(cw);
 			draw(cw);
 			endwin();
+#ifdef USGV4
+			(void) TtySetOriginalChars();
+#endif
 			exit(0);
 		    }
 		when '.' : ;			/* Rest command */
@@ -869,6 +872,9 @@ shell()
     wclear(hw);
     wmove(hw, LINES-1, 0);
     draw(hw);
+#ifdef USGV4
+    (void) TtySetOriginalChars();
+#endif
     endwin();
     in_shell = TRUE;
     fflush(stdout);
@@ -886,6 +892,10 @@ shell()
 	setgid(getgid());
 	execl(sh == NULL ? "/bin/sh" : sh, "shell", "-i", 0);
 	perror("No shelly");
+	endwin();
+#ifdef USGV4
+	(void) TtySetOriginalChars();
+#endif
 	exit(-1);
     }
     else
@@ -896,6 +906,9 @@ shell()
 	    continue;
 	signal(SIGINT, quit);
 	signal(SIGQUIT, quit);
+#ifdef USGV4
+	(void) TtySetGameChars();
+#endif
 	printf(retstr);
 	noecho();
 	crmode();

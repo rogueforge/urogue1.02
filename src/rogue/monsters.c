@@ -396,9 +396,13 @@ int y, x;
 		    ((cur_armor != NULL && cur_armor->o_which == MITHRIL)
 				 ? -5 : 0)) &&
 	        !(on(player, ISFLEE) && (player.t_dest == &tp->t_pos))) {
-		    turn_on(player, ISFLEE);
-		    player.t_dest = &tp->t_pos;
-		    msg("The sight of the %s terrifies you.", mname);
+		    if (off(player, SUPERHERO)) {
+			turn_on(player, ISFLEE);
+			player.t_dest = &tp->t_pos;
+			msg("The sight of the %s terrifies you.", mname);
+		    }
+		    else
+			msg("My, the %s looks ugly.", mname);
 	    }
 	}
 
@@ -654,7 +658,8 @@ register struct thing *tp;
 		/* Calculate price */
 		w = armors[j].a_worth;
 		w *= (1 + luck + (10 * selection[i].plus1));
-		selection[i].worth = max((w/2) + rnd(w), 25);
+		w = (w/2) + (roll(6,w)/6);
+		selection[i].worth = max(w, 25);
 		if (min_worth > selection[i].worth || i == 1)
 		    min_worth = selection[i].worth;
 	    }
@@ -696,7 +701,8 @@ register struct thing *tp;
 		w = weaps[selection[i].which].w_worth * selection[i].count;
 		w *= (1 + luck + (10 * selection[i].plus1 + 
 			10 * selection[i].plus2));
-		selection[i].worth = max((w/2) + rnd(w), 25);
+		w = (w/2) + (roll(6,w)/6);
+		selection[i].worth = max(w, 25);
 		if (min_worth > selection[i].worth || i == 1)
 		    min_worth = selection[i].worth;
 	    }
@@ -725,7 +731,8 @@ register struct thing *tp;
 	        }
 		w = ws_magic[selection[i].which].mi_worth;
 		w += (luck + 1) * 20 * selection[i].plus1;
-		selection[i].worth = max((w/2) + rnd(w), 25);
+		w = (w/2) + (roll(6,w)/6);
+		selection[i].worth = max(w, 25);
 		if (min_worth > selection[i].worth || i == 1)
 		    min_worth = selection[i].worth;
 	    }
@@ -770,7 +777,8 @@ register struct thing *tp;
 			w += selection[i].plus1 * 50;
 		}
 		w *= (1 + luck);
-		selection[i].worth = max((w/2) + rnd(w), 25);
+		w = (w/2) + (roll(6,w)/6);
+		selection[i].worth = max(w, 25);
 		if(min_worth > selection[i].worth * selection[i].count)
 		    min_worth = selection[i].worth;
 	    }
