@@ -593,3 +593,7 @@
 2)	corrected message of deactivation of artifacts
 3)	changed definition of .rog_defs to an external variable in
 	tunable.c for customization purposes
+
+1.02 Beta May 23/85
+1)	termination after load average is too high does a save instead
+	of just quitting
