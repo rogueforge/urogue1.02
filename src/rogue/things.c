@@ -136,7 +136,7 @@ register bool drop;
         when RING:
 	    if (r_know[obj->o_which] || (obj->o_flags & ISPOST))
 		sprintf(prbuf, "A%s%s ring of %s(%s)", 
-		    obj->o_flags & CANRETURN ? "claimed " : "", ring_num(obj),
+		    obj->o_flags & CANRETURN ? " claimed" : "", ring_num(obj),
 		    r_magic[obj->o_which].mi_name, r_stones[obj->o_which]);
 	    else if (r_guess[obj->o_which])
 		sprintf(prbuf, "A %sring called %s(%s)",

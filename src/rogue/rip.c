@@ -415,7 +415,7 @@ total_winner()
 	wait_for(' ');
 	clear();
 	mvprintw(0, 0, "Contents of the Magic Purse of Yendor:\n");
-	for (c = 'a', item = bag; item != NULL; item = next(item)) {
+	for (c = 'a', item = bag; item != NULL; c++, item = next(item)) {
 	    obj = OBJPTR(item);
 	    worth = get_worth(obj);
 	    whatis(item);

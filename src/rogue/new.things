@@ -805,3 +805,8 @@
 3)	player startup body AC initialized wrong
 4)	negative transaction count after selling ring of adornment fixed
 5)	fixed opening of authors file
+
+1.02	August 11, 85
+1)	inventory name of a claimed ring had blanks in wrong place
+2)	fixed printing of inventory and counting of things inside
+	the Magic Purse of Yendor
