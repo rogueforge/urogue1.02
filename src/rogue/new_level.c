@@ -421,7 +421,7 @@
  	draw_room(rp);				/* draw the only room */
  
  	save_level = level;			/* save current level */
- 	level = max(3*level, level + roll(8,8));
+ 	level = max(2*level, level + roll(4,6));
  
  	for (i = roll(4,10); i >= 0; i--) {
  	    item = new_item(sizeof *tp);
@@ -432,9 +432,9 @@
  	    } until(mvwinch(stdscr, mp.y, mp.x) == FLOOR);
  	    new_monster(item, randmonster(FALSE, FALSE), &mp, FALSE);
  	    turn_on(*tp, CANSEE);
- 	    tp->t_stats.s_hpt *= 3;
+ 	    tp->t_stats.s_hpt *= 2;
  	    tp->t_stats.s_lvl *= 2;
- 	    tp->t_stats.s_arm -= roll(2,5);
+ 	    tp->t_stats.s_arm -= roll(2,3);
  	}
  	
  	level = save_level + roll(2,3);		/* send the hero down */
@@ -449,9 +449,9 @@
  	new_monster(item, i, &mp, FALSE);
          turn_on(*tp, CANINWALL);
  	turn_on(*tp, CANSEE);
- 	tp->t_stats.s_hpt *= 3;
+ 	tp->t_stats.s_hpt *= 2;
  	tp->t_stats.s_lvl *= 2;
- 	tp->t_stats.s_arm -= roll(2,5);
+ 	tp->t_stats.s_arm -= roll(2,3);
  	msg("You have been summoned by a %s.", monsters[i].m_name);
  	aggravate();
  }

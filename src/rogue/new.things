@@ -601,3 +601,12 @@
 1.02 Beta May 25/85
 1)	corrected code for adding userid after name in scorefile
 2)	redisplaying of messages after being cleared by msg("") fixed
+
+1.02 Beta May 27/85
+1)	dungeon level dependent monster ability algorithm made less
+	nasty
+2)	throne room monster ability modification algorithm made less
+	nasty
+3)	some of Lucifer's abilities made less nasty
+4)	levitated and phased allows upward movement through rock
+5)	discovered trading post stays lit when exiting room
