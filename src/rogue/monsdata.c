@@ -202,7 +202,7 @@ struct monster monsters[NUMMONST+2] = {
 		"2d3"}},
 {"leprechaun",
 		0,	TRUE,	FALSE,	'l',	"15-16",
-		{CARRYGOLD, STEALGOLD},
+		{ISMEAN, CARRYGOLD, STEALGOLD},
 		0, 0,
 		1,
 		{10,	80,	8,	-6,	HPT("4d8+1"),

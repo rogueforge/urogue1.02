@@ -177,7 +177,7 @@ int dy, dx;
 	}
     }
 
-    if (on(player, ISDISGUISE) && rnd(pstats.s_dext) == 0) {
+    if (on(player, ISDISGUISE) && rnd(3*pstats.s_dext) == 0) {
 	extinguish(undisguise);
 	undisguise();
     }

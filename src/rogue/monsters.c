@@ -361,7 +361,7 @@ int y, x;
 	    if (!save(VS_MAGIC - 
 		    ((cur_armor != NULL && cur_armor->o_which == MITHRIL) 
 				? -5 : 0))) {
-		if (off(player, ISCLEAR)) {
+		if (off(player, ISCLEAR) && off(player, ISINVIS)) {
 		    if (on(player, ISHUH))
 			lengthen(unconfuse, rnd(20)+HUHDURATION);
 		    else {
@@ -370,6 +370,8 @@ int y, x;
 			turn_on(player, ISHUH);
 		    }
 		}
+		else if (on(player, ISINVIS))
+		    msg("The %s's gaze has no effect.", mname);
 		else 
 		    msg("You feel dizzy for a moment, but it quickly passes.");
 	    }
@@ -380,7 +382,9 @@ int y, x;
 	/* Sleep */
 	if (on(*tp, CANSNORE) && no_command == 0 &&
 	    !save(VS_PARALYZATION)) {
-	    if (ISWEARING(R_ALERT))
+ 	    if (on(player, ISINVIS))
+		msg("The gaze of the %s has no effect.", mname);
+	    else if (ISWEARING(R_ALERT))
 		msg("You feel slightly drowsy for a moment.");
 	    else {
 		msg("The %s's gaze puts you to sleep.", mname);
@@ -396,7 +400,7 @@ int y, x;
 		    ((cur_armor != NULL && cur_armor->o_which == MITHRIL)
 				 ? -5 : 0)) &&
 	        !(on(player, ISFLEE) && (player.t_dest == &tp->t_pos))) {
-		    if (off(player, SUPERHERO)) {
+		    if (off(player, SUPERHERO) && off(player, ISINVIS)) {
 			turn_on(player, ISFLEE);
 			player.t_dest = &tp->t_pos;
 			msg("The sight of the %s terrifies you.", mname);
@@ -408,6 +412,7 @@ int y, x;
 
 	/* blinding creatures */
 	if (on(*tp, CANBLIND) && off(player, ISBLIND) && !ISWEARING(R_SEEINVIS)
+		&& off(player, ISINVIS)
 		&& !save(VS_WAND - 
 		    ((cur_armor != NULL && cur_armor->o_which == MITHRIL)
 			? -5 : 0))) {
@@ -421,7 +426,7 @@ int y, x;
 	if (on(*tp, LOOKSTONE)) {
 	    turn_off(*tp, LOOKSTONE);
 
-	    if (on(player, CANINWALL))
+	    if (on(player, CANINWALL) || on(player, ISINVIS))
 		msg("The gaze of the %s has no effect.", mname);
 	    else {
 		if (!save(VS_PETRIFICATION) && rnd(100) < 3) {
