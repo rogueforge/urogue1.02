@@ -5,6 +5,7 @@ extern	char	LOGIN[];
 extern	char	SCOREDIR[];
 extern	char	LOADAV_PROG[];
 extern	char	UTMP[];
+extern	char	ROGDEFS[];
 extern	int	MAXLOAD;
 extern	int	MAXUSERS;
 extern	int	HOLIDAY;

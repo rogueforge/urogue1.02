@@ -586,3 +586,10 @@
 1)	a blessed scroll acquirement allows creation of an artifact or
 	monster even if not wizard
 2)	infestation is not supposed to be immediately fatal
+
+1.02 Beta May 22/85
+1)	moved new.things (this file) into directory rogue to make updates
+	via context diffs more easy to apply
+2)	corrected message of deactivation of artifacts
+3)	changed definition of .rog_defs to an external variable in
+	tunable.c for customization purposes

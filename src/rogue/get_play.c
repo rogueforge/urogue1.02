@@ -25,7 +25,7 @@ geta_player()
 	short    cnt,i;
 
 	strcpy(char_file,home);
-	strcat(char_file, ".rog_defs");
+	strcat(char_file, ROGDEFS);
 
 	if ((fd = open(char_file, 0)) < 0)
 	{

@@ -39,6 +39,11 @@ char	LOADAV_PROG[]	=	"/usr/local/la";
 char	UTMP[]		=	"/etc/utmp";
 
 /*
+ * Name of player definitions file
+ */
+char	ROGDEFS[]	=	".rog_defs";
+
+/*
  * Load control constants
  */
 int	MAXLOAD		=	50;	/* 10 * max 15 minute load average */
