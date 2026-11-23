@@ -443,9 +443,9 @@ register bool flee;
 			       (save(VS_BREATH) ? tp->t_stats.s_hpt/2
 					        : tp->t_stats.s_hpt));
 
+		if (monst_dead) return(TRUE);
 		ch_ret = *er;
 		dist = DISTANCE(ch_ret.y, ch_ret.x, ee->y, ee->x);
-		if (monst_dead) return(TRUE);
 	}
 
     /* 
