@@ -511,10 +511,11 @@ command()
 	}
 	if (on(player, ISELECTRIC)) {
 	    register int lvl;
-	    register struct linked_list *item;
+	    register struct linked_list *item, *nitem;
 	    register struct thing *tp;
 
-	    for (item = mlist; item != NULL; item = next(item)) {
+	    for (item = mlist; item != NULL; item = nitem) {
+		nitem = next(item);
 		tp = (struct thing *) ldata(item);
 		if (DISTANCE(tp->t_pos.y, tp->t_pos.x, hero.y, hero.x) < 5) {
 		    if ((tp->t_stats.s_hpt -= roll(2,4)) <= 0) {
