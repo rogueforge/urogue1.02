@@ -105,20 +105,20 @@ geta_player()
 	    }
 	mvwaddstr(hw,0,0,"Do you wish to select a character? ");
 	draw(hw);
-	if ((getchar() & 0177) != 'y')	return(FALSE);
+	if (readchar() != 'y')	return(FALSE);
 again:
 	wmove(hw, LINES - 1, 0);
 	wclrtoeol(hw);
 	mvwaddstr(hw,0,0,"Enter the number of a pre-defined character:");
 	wclrtoeol(hw);
 	draw(hw);
-	i = ((getchar() & 0177) - '0') - 1;
+	i = (readchar() - '0') - 1;
 	while(i < 0 || i > MAXPDEF-1) {
 	    mvwaddstr(hw,0,0,"Use the range 1 to");
 	    wprintw(hw," %d!",MAXPDEF);
 	    wclrtoeol(hw);
 	    draw(hw);
-	    i = ((getchar() & 0177) - '0') - 1;
+	    i = (readchar() - '0') - 1;
 	}
 	if(def_array[i][I_STR] == 0) {
 	    mvwaddstr(hw,0,0,"Please enter the number of a known character:");
@@ -234,14 +234,14 @@ int	arm, wpt, hpadd, dmadd;
 	mvwaddstr(hw,5,5,pbuf);
 	mvwaddstr(hw,0,0,"Would you like to re-roll the character?");
 	draw(hw);
-	if((getchar() & 0177) == 'y')
+	if(readchar() == 'y')
 	    return(FALSE);
 	if(no_write)
 	    return(TRUE);
 	mvwaddstr(hw,0,0,"Would you like to save this character?");
 	wclrtoeol(hw);
 	draw(hw);
-	if((getchar() & 0177) != 'y')
+	if(readchar() != 'y')
 	    return(TRUE);
 
 	wstandout(hw);
@@ -287,13 +287,13 @@ int	arm, wpt, hpadd, dmadd;
 	}
 	mvwaddstr(hw,0,0,"Enter a number which this character is to be saved as:");
 	draw(hw);
-	i = ((getchar() & 0177) - '0') - 1;
+	i = (readchar() - '0') - 1;
 	while(i < 0 || i > MAXPDEF-1) {
 	    mvwaddstr(hw,0,0,"Use the range 1 to");
 	    wprintw(hw," %d!",MAXPDEF);
 	    wclrtoeol(hw);
 	    draw(hw);
-	    i = ((getchar() & 0177) - '0') - 1;
+	    i = (readchar() - '0') - 1;
 	}
 	/* Preserve some local variables */
 	def_array[i][I_WEAPENCH] = (hpadd *10) + dmadd;

@@ -849,14 +849,14 @@ register struct thing *tp;
     killed(item, FALSE, FALSE);
     monst_dead = TRUE;
 
-    which_item = (short) ((getchar() & 0177) - 'a');
+    which_item = (short) (readchar() - 'a');
     while (which_item < 0 || which_item >= nitems) {
 	if (which_item == (short) ESCAPE - (short) 'a') {
 	    return;
 	}
 	mvwaddstr(hw, 0, 0, "Please enter one of the listed items. ");
 	draw(hw);
-	which_item = (short) ((getchar() & 0177) - 'a');
+	which_item = (short) (readchar() - 'a');
     }
 
     if (selection[which_item].worth > purse) {

@@ -95,7 +95,7 @@ save_game()
 	msg("Save file (%s)? ", file_name);
 	do
 	{
-	    c = getchar() & 0177;
+	    c = readchar();
 	    if (c == ESCAPE) return(0);
 	} while (c != 'n' && c != 'N' && c != 'y' && c != 'Y');
 	mpos = 0;
