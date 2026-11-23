@@ -15,6 +15,9 @@
 #define unctrl unctrl
 #endif
 
+#define MAXLINES	128		/* most screen lines a saved game holds */
+#define MAXCOLS		256		/* most screen columns a saved game holds */
+
 /*
  * Maximum number of different things
  */
@@ -908,6 +911,10 @@ struct  real_pass {
 	char	rp_pass[20];
 	char	rp_pkey[2];
 } ;
+
+#define malloc	rg_alloc
+#define calloc	rg_calloc
+#define free	rg_free
 
 struct linked_list *find_mons(), *find_obj(), *get_item(), *new_item();
 struct linked_list *new_thing(), *wake_monster(), *get_hurl(), *spec_item();
