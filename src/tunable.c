@@ -60,7 +60,12 @@ char	ROGDEFS[]	=	".rog_defs";
 /*
  * Load control constants
  */
+#ifdef NOLOADCHECK
+int	MAXLOAD		=	32767;
+int	MAXUSERS	=	32767;
+#else
 int	MAXLOAD		=	50;	/* 10 * max 15 minute load average */
 int	MAXUSERS	=	15;	/* max users at start */
+#endif
 int	HOLIDAY		=	0;	/* enable prime shift restrictions */
 int	CHECKTIME	=	5;	/* minutes between load checks */
