@@ -537,10 +537,10 @@ checkout()
 		struct stat sb;
 		int fd;
 
-		clear();
-		move(LINES-2, 0);
-		printw("You didn't listen, so now you are DEAD!!\n");
-		draw(stdscr);
+		wclear(hw);
+		wmove(hw, LINES-2, 0);
+		wprintw(hw, "You didn't listen, so now you are DEAD!!\n");
+		draw(hw);
 		endwin();
 		printf("\n");	/* now do a save if possible */
 		if (stat(file_name, &sb) >= 0
