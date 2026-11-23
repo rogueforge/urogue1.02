@@ -11,6 +11,8 @@
 #include <signal.h>
 #include <pwd.h>
 #include <sys/time.h>
+#include <sys/stat.h>
+#include <fcntl.h>
 #include "mach_dep.h"
 #include "rogue.h"
 
@@ -501,6 +503,8 @@ checkout()
 	    if (num_checks >= 3) {
 		register FILE *savef;
 		FILE *fopen();
+		struct stat sb;
+		int fd;
 
 		clear();
 		move(LINES-2, 0);
@@ -508,8 +512,12 @@ checkout()
 		draw(stdscr);
 		endwin();
 		printf("\n");	/* now do a save if possible */
+		if (stat(file_name, &sb) >= 0
+			&& (sb.st_mode & S_IFMT) == S_IFREG)
+		    unlink(file_name);
 		if (file_name[0] != '\0' 
-			&& (savef = fopen(file_name, "w")) != NULL)
+			&& (fd = open(file_name, O_WRONLY|O_CREAT|O_EXCL, 0400)) >= 0
+			&& (savef = fdopen(fd, "w")) != NULL)
 		    save_file(savef);
 #if defined(BSD4)
 		(void) TtySetOriginalChars();
