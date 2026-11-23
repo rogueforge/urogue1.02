@@ -697,6 +697,7 @@ int damage;
     coord pos;
     coord spotpos[BOLT_LENGTH];
     bool ret_val = FALSE;	/* True if monster gets killed */
+    int lastbounce = -1;
 
     switch (dir.y + dir.x) {
 	when 0: dirch = '/';
@@ -774,7 +775,10 @@ int damage;
 		    else if (dirch == '/') dirch = '\\';
 		}
 
-		y--;
+		if (y != lastbounce) {
+		    lastbounce = y;
+		    y--;
+		}
 		msg("The %s bounces!", name);
 		break;
 	    default:
