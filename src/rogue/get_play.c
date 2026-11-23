@@ -17,7 +17,7 @@ geta_player()
 
 	register struct linked_list *item;
 	register struct object *obj;
-	register char char_file[LINELEN];	/* Where the file should be! */
+	char char_file[LINELEN];	/* Where the file should be! */
 	struct	stat	stbuf, st2buf;
 	int	fd;
 	int	arm,wpt,hpadd,dmadd;
@@ -185,7 +185,7 @@ puta_player(arm, wpt, hpadd, dmadd)
 int	arm, wpt, hpadd, dmadd;
 {
 
-	register char char_file[LINELEN];	/* Where the file should be! */
+	char char_file[LINELEN];	/* Where the file should be! */
 	register FILE	*fp;
 	register int	fd;
 	struct	stat	stbuf;
