@@ -821,7 +821,9 @@ struct monster monsters[NUMMONST+2] = {
 		0,
 		{10,	58080,	38,	-3,	HPT("0d8+168"),
 		"2d6/2d6/6d8"}},
+#ifdef notdef
 		{ISMEAN,ISUNIQUE, CANHOLD, CANPOISON,CANFRIGHTEN,ISMEAN, CANBBOLT},
+#endif
 {"arch devil (Baalzebul)", 
 		100, TRUE, FALSE, 'B', "17-18",
 {ISMEAN, ISSHADOW, ISUNIQUE, BMAGICHIT, CANHOLD, CANPOISON, CANFRIGHTEN,        CANHUH, CANSUMMON},

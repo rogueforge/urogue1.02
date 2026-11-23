@@ -31,8 +31,8 @@
 #define	MAXDOORS	4	/* Maximum doors to a room */
 #define	MAXPRAYERS	12	/* Maximum number of prayers for cleric */
 #define	MAXSPELLS	21	/* Maximum number of spells (for magician) */
-#define	NUMMONST	125	/* Current number of monsters */
-#define NUMUNIQUE	17	/* number of UNIQUE creatures */
+#define	NUMMONST	124	/* Current number of monsters */
+#define NUMUNIQUE	16	/* number of UNIQUE creatures */
 #define	NLEVMONS	2	/* Number of new monsters per level */
 #define MAXPURCH	8	/* max purchases per trading post visit */
 #define LINELEN		80	/* characters in a buffer */
