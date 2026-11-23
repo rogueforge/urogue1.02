@@ -344,7 +344,8 @@ char **envp;
 #endif
 
     environ = envp;
-    strcpy(file_name, file);
+    strncpy(file_name, file, LINELEN - 1);
+    file_name[LINELEN - 1] = '\0';
     setup();
     clearok(curscr, TRUE);
     touchwin(cw);
