@@ -75,6 +75,7 @@ coord *cp;
     tp->t_ctype = C_MONSTER;
     tp->t_no_move = 0;
     tp->t_doorgoal = -1;
+    tp->t_dest = &hero;
     bcopy (cp, &tp->t_oldpos, sizeof (coord));
     tp->t_pos = tp->t_oldpos;  
     tp->t_oldch = mvwinch(cw, cp->y, cp->x);
