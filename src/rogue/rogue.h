@@ -5,6 +5,7 @@
 #include "../tunable.h"
 #include <stdarg.h>
 #include <time.h>
+#include <unistd.h>
 
 /*
  * Maximum number of different things
@@ -912,7 +913,7 @@ char *malloc(), *getenv(), *unctrl(), *tr_name(), *new();
 #else
 char *malloc(), *getenv(), *tr_name(), *new();
 #endif
-char *vowelstr(), *inv_name(), *strcpy(), *strcat(), *sbrk(), *brk();
+char *vowelstr(), *inv_name(), *strcpy(), *strcat();
 char *ctime(), *num(), *ring_num(), *blesscurse(), *typ_name();
 
 struct room *roomin();
@@ -938,7 +939,6 @@ void byebye();
 
 int checkout();
 
-long lseek();
 
 struct trap *trap_at();
 

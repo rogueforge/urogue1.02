@@ -18,8 +18,6 @@ typedef struct stat STAT;
 extern char version[], *strerror();
 #include <errno.h>
 
-char *sbrk();
-
 STAT sbuf;
 
 int sigdie = -1;
