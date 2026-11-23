@@ -499,9 +499,9 @@ total_winner()
     mvprintw(c - 'a' + 1, 0,"   %6d  Gold Pieces          ", oldpurse);
     refresh();
     if (has_artifact == 255) 
-	score(pstats.s_exp, TOTAL);
+	score(pstats.s_exp, TOTAL, 0);
     else
-	score(pstats.s_exp, WINNER);
+	score(pstats.s_exp, WINNER, 0);
     exit(0);
 }
 
