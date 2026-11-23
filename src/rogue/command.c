@@ -406,9 +406,12 @@ command()
 			     * Give the rogue a sword 
 			     */
 			    item = spec_item(WEAPON, CLAYMORE, 10, 10);
-			    add_pack(item, TRUE);
-			    cur_weapon = (struct object *) ldata(item);
-			    cur_weapon->o_flags |= ISKNOW;
+			    if (add_pack(item, TRUE)) {
+				cur_weapon = (struct object *) ldata(item);
+				cur_weapon->o_flags |= ISKNOW;
+			    }
+			    else
+				discard(item);
 
 			    /*
 			     * and a stick
@@ -422,7 +425,8 @@ command()
 				free(ws_guess[WS_ANNIH]);
 				ws_guess[WS_ANNIH] = NULL;
 			    }
-			    add_pack(item, TRUE);
+			    if (!add_pack(item, TRUE))
+				discard(item);
 			    /*
 			     * and his suit of armor
 			     */
@@ -430,8 +434,10 @@ command()
 			    obj = (struct object *) ldata(item);
 			    obj->o_flags |= ISKNOW;
 			    obj->o_weight = armors[CRYSTAL_ARMOR].a_wght * 0.2;
-			    cur_armor = obj;
-			    add_pack(item, TRUE);
+			    if (add_pack(item, TRUE))
+				cur_armor = obj;
+			    else
+				discard(item);
 			    purse += 50000;
 			    updpack(TRUE);
 			}
