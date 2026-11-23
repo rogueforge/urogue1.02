@@ -544,7 +544,7 @@ bool blessed;
     status(FALSE);
     if (is_potion && p_know[which] && p_guess[which])
     {
-	cfree(p_guess[which]);
+	free(p_guess[which]);
 	p_guess[which] = NULL;
     }
     else if (is_potion && 

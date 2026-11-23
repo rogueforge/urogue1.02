@@ -417,7 +417,7 @@ command()
 	    		    ws_know[WS_ANNIH] = TRUE;
 	    		    if (ws_guess[WS_ANNIH])
 	    		    {
-				cfree(ws_guess[WS_ANNIH]);
+				free(ws_guess[WS_ANNIH]);
 				ws_guess[WS_ANNIH] = NULL;
 			    }
 			    add_pack(item, TRUE);
@@ -988,7 +988,7 @@ bool mark;
 	msg("alled \"%s\".", elsewise);
 	msg(terse ? "Call it: " : "What do you want to call it? ");
 	if (guess[obj->o_which] != NULL)
-	    cfree(guess[obj->o_which]);
+	    free(guess[obj->o_which]);
 	strcpy(prbuf, elsewise);
     }
     if (get_str(prbuf, cw) == NORM) {

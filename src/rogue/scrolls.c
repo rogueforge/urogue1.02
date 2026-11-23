@@ -788,7 +788,7 @@ pet_message:	    msg("The dungeon begins to rumble and shake!");
     status(FALSE);
     if (is_scroll && s_know[which] && s_guess[which])
     {
-	cfree(s_guess[which]);
+	free(s_guess[which]);
 	s_guess[which] = NULL;
     }
     else if (is_scroll && 
