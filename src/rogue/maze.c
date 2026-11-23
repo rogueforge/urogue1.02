@@ -111,7 +111,7 @@ do_maze()
 draw_maze()
  {
    reg int i, j, more;
-   reg int *ptr;
+   reg char *ptr;
  
      lines = (LINES - 3) / 2;
      cols = (COLS - 1) / 2;
