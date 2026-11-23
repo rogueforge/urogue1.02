@@ -876,7 +876,7 @@ register struct thing *tp;
 	obj->o_group = newgrp();
     }
 
-    if (selection[i].flags) {
+    if (selection[which_item].flags) {
 	obj->o_flags |= ISCURSED;
 	obj->o_flags &= ~ISBLESSED;
     }
