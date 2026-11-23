@@ -236,7 +236,7 @@ struct linked_list *item;
     }
     if (op->o_type == ARTIFACT && levtype != POSTLEV)
 	has_artifact &= ~(1 << op->o_which);
-    if(ch == POOL) {
+    if(item == NULL && ch == POOL) {
 	msg("Your %s sinks out of sight.",inv_name(op,TRUE));
 	discard(obj);
 	obj == NULL;
