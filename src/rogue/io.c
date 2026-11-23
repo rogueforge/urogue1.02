@@ -5,6 +5,8 @@
 #include "curses.h"
 #include "mach_dep.h"
 #include <ctype.h>
+#include <errno.h>
+#include <signal.h>
 #include "rogue.h"
 
 static char mbuf[2*BUFSIZ];
@@ -155,10 +157,12 @@ shoot_ok(ch)
 readchar()
 {
     char c;
+    register int cnt = 0;
 
     fflush(stdout);
-    while (read(0, &c, 1) < 0)
-	continue;
+    for (errno = 0; read(0, &c, 1) <= 0; errno = 0)
+	if (errno != EINTR && cnt++ > 100)	/* if we are getting infinite EOFs */
+	    auto_save(SIGHUP);	/* save the game */
     return (c & 0177);
 }
 
