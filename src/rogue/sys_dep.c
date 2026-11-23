@@ -232,7 +232,7 @@ rand_percent(percentage)
 }
 #endif
 
-#if defined(BSD4)
+#if defined(BSD4) && !defined(NCURSES_VERSION)
 
 static  struct  ltchars OriginalLtchars;
 static  struct  ltchars GameLtchars;
@@ -511,6 +511,33 @@ tstop()
   return;
 }
 #endif /* BSD4 */
+
+#if defined(BSD4) && defined(NCURSES_VERSION)
+TtyInit()
+{
+  return 1;
+}
+
+TtySetOriginalChars()
+{
+  return 1;
+}
+
+TtyGetGameChars()
+{
+  return 1;
+}
+
+TtySetGameChars()
+{
+  return 1;
+}
+
+TtyMapGameChars()
+{
+  return 1;
+}
+#endif
 
 #if !defined(BSD4)
 _dprnt(fmt, argp, file)
