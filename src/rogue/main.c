@@ -390,12 +390,7 @@ playit()
      * set up defaults for slow terminals
      */
 
-#if defined(USGV5) || defined(USGV3)
-	if((_tty.c_cflag & CBAUD) < B1200)
-#endif
-#if defined(BSD4)
-	if(_tty.sg_ospeed < B1200)
-#endif
+	if (baudrate() < 1200)
     {
 	terse = TRUE;
 	jump = TRUE;

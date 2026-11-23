@@ -227,12 +227,7 @@
      {
  	if (c == -1)
  	    continue;
-#if defined(USGV3) || defined(USGV5)
- 	else if (c == _tty.c_cc[VERASE]) /* process erase character */
-#endif
-#if defined(BSD4)
- 	else if (c == _tty.sg_erase) /* process erase character */
-#endif
+ 	else if (c == erasechar()) /* process erase character */
  	{
  	    if (sp > buf)
  	    {
@@ -244,12 +239,7 @@
  	    }
  	    continue;
  	}
-#if defined(USGV3) || defined(USGV5)
- 	else if (c == _tty.c_cc[VKILL])  /* process kill character */
-#endif
-#if defined(BSD4)
- 	else if (c == _tty.sg_kill)  /* process kill character */
-#endif
+ 	else if (c == killchar())  /* process kill character */
  	{
  	    sp = buf;
  	    wmove(win, oy, ox);
