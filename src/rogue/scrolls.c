@@ -817,7 +817,7 @@ short monster;
 bool report;
 {
     register int x, y;
-    register bool appear = 0;
+    register char appear = 0;
     struct thing play_copy;	/* A copy with no phasing */
     coord mp;
 
