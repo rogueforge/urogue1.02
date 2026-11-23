@@ -221,6 +221,12 @@ char **envp;
     (void) TtyInit();			/* Set up for the tty magic */
 #endif
     initscr();				/* Start up cursor package */
+    if (LINES < 14 || COLS < 40)
+    {
+	endwin();
+	printf("\nSorry, urogue needs a terminal with at least 14 lines and 40 columns.\n");
+	exit(1);
+    }
     init_names();			/* Set up names of scrolls */
     setup();
 
