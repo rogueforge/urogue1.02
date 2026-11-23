@@ -11,6 +11,10 @@
 #define reg register
 #endif
 
+#ifdef NCURSES_VERSION
+#define unctrl unctrl
+#endif
+
 /*
  * Maximum number of different things
  */
