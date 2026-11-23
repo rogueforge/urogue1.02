@@ -17,7 +17,7 @@
 struct delayed_action {
 	int d_type;
 	int (*d_func)();
-	int d_arg;
+	long d_arg;
 	int d_time;
 } d_list[MAXDAEMONS] = {
 	_X_, _X_, _X_, _X_, _X_, _X_, _X_, _X_, _X_, _X_,
@@ -70,7 +70,8 @@ reg int (*func)();
  *	Start a daemon, takes a function.
  */
 start_daemon(func, arg, type)
-reg int arg, type, (*func)();
+reg long arg;
+reg int type, (*func)();
 {
 	reg struct delayed_action *dev;
 
@@ -210,6 +211,6 @@ reg int flag;
  */
 activity()
 {
-	msg("Daemons = %d : Memory Items = %d : Memory Used = %d",
-	    demoncnt,total,sbrk(0));
+	msg("Daemons = %d : Memory Items = %d : Memory Used = %ld",
+	    demoncnt,total,(long) sbrk(0));
 }

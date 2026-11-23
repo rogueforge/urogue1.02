@@ -914,7 +914,7 @@ char *malloc(), *getenv(), *unctrl(), *tr_name(), *new();
 char *malloc(), *getenv(), *tr_name(), *new();
 #endif
 char *vowelstr(), *inv_name(), *strcpy(), *strcat();
-char *ctime(), *num(), *ring_num(), *blesscurse(), *typ_name();
+char *ctime(), *num(), *ring_num(), *blesscurse(), *typ_name(), *charge_str();
 
 struct room *roomin();
 
@@ -941,6 +941,10 @@ int checkout();
 
 
 struct trap *trap_at();
+
+struct delayed_action *find_slot();
+
+int start_daemon(int (*)(), long, int);
 
 extern struct h_list helpstr[];
 /*

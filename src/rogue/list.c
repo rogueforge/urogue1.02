@@ -104,8 +104,8 @@ int size;
     static errbuf[LINELEN];
 
     if (space == NULL) {
-	sprintf(errbuf,"Rogue ran out of memory (used = %d, wanted = %d).",
-		sbrk(0), size);
+	sprintf(errbuf,"Rogue ran out of memory (used = %ld, wanted = %d).",
+		(long) sbrk(0), size);
 	fatal(errbuf);
     }
     total++;
