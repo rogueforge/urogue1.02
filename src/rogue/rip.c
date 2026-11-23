@@ -187,7 +187,7 @@ short monst;
 	    packend = "at your untimely demise";
 	mvaddstr(LINES - 1, 0, retstr);
 	refresh();
-	gets(prbuf);
+	getnstr(prbuf, LINELEN - 1);
 	showpack(packend);
     }
 
@@ -219,7 +219,7 @@ short monst;
 	mvaddstr(LINES - 1, 0, retstr);
 	refresh();
 	fflush(stdout);
-	gets(prbuf);
+	getnstr(prbuf, LINELEN - 1);
     }
     if (wizard) {
 	if (strncmp(prbuf, "edit", 4) == 0)
