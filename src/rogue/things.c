@@ -234,6 +234,8 @@ struct linked_list *item;
         inpack--;
 	freeletter(obj);
     }
+    if (op->o_type == ARTIFACT && levtype != POSTLEV)
+	has_artifact &= ~(1 << op->o_which);
     if(ch == POOL) {
 	msg("Your %s sinks out of sight.",inv_name(op,TRUE));
 	discard(obj);
@@ -261,8 +263,6 @@ struct linked_list *item;
 	op->o_pos = hero;
 	msg("Dropped %s.", inv_name(op, TRUE));
     }
-    if (op->o_type == ARTIFACT && levtype != POSTLEV)
-	has_artifact &= ~(1 << op->o_which);
     updpack(FALSE);
     return (TRUE);
 }
