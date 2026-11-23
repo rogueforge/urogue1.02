@@ -60,7 +60,7 @@ register short monst;
 	    register struct linked_list *item;
 	    register struct linked_list *next_item;
 	    register struct object *obj;
-	    register int rm, flags;
+	    register int rm, flags, cnt;
 	    coord pos;
 
 	    die = FALSE;
@@ -88,10 +88,13 @@ register short monst;
 		    inpack--;
 		    if (obj->o_type == ARTIFACT)
 			has_artifact &= ~(1 << obj->o_which);
+		    cnt = 0;
 		    do {
 			rm = rnd_room();
 		        rnd_pos(&rooms[rm], &pos);
-		    } until (winat(pos.y, pos.x) == FLOOR);
+		    } until (winat(pos.y, pos.x) == FLOOR || ++cnt > 500);
+		    if (cnt > 500)
+			pos = hero;
 		    mvaddch(pos.y, pos.x, obj->o_type);
 		    obj->o_pos = pos;
 		}
