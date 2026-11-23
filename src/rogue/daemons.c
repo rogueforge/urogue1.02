@@ -91,7 +91,7 @@ struct thing *tp;
 
 swander()
 {
-    daemon(rollwand, 0, BEFORE);
+    start_daemon(rollwand, 0, BEFORE);
 }
 
 /*
