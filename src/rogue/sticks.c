@@ -203,9 +203,10 @@ bool blessed;
 	}
 	when WS_MISSILE:
 	{
+	    static char bolt_dmg[16];
 	    static struct object bolt =
 	    {
-		'*' , {0, 0}, "", 0, 0, "1d4" , 0, 0, 100, 1
+		'*' , {0, 0}, "", 0, 0, bolt_dmg , 0, 0, 100, 1
 	    };
 
 	    sprintf(bolt.o_hurldmg, "%dd4", pstats.s_lvl);
