@@ -362,7 +362,7 @@ setup()
 
     signal(SIGHUP, auto_save);
     signal(SIGINT, quit);
-#if defined(BSD4)
+#if defined(BSD4) && !defined(NCURSES_VERSION)
     signal(SIGTSTP, tstop);
 #endif
 
