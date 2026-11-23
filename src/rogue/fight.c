@@ -1276,6 +1276,7 @@ register struct linked_list *item;
     mvwaddch(cw, mp->y, mp->x, ((struct thing *) ldata(item))->t_oldch);
     detach(mlist, item);
     discard(item);
+    monst_dead = TRUE;
 }
 
 /*
