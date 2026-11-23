@@ -7,6 +7,10 @@
 #include <time.h>
 #include <unistd.h>
 
+#ifndef reg
+#define reg register
+#endif
+
 /*
  * Maximum number of different things
  */
