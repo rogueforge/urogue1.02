@@ -195,8 +195,13 @@ register bool flee;
 
 	if ((item = find_obj(ch_ret.y, ch_ret.x)) != NULL) {
 	    register char floor = (roomin(&ch_ret) == NULL) ? PASSAGE : FLOOR;
+	    register struct linked_list *mitem;
 
 	    detach(lvl_obj, item);
+	    for (mitem = mlist; mitem != NULL; mitem = next(mitem))
+		if (((struct thing *) ldata(mitem))->t_dest ==
+		    &((struct object *) ldata(item))->o_pos)
+			((struct thing *) ldata(mitem))->t_dest = &hero;
 	    mvaddch(ch_ret.y, ch_ret.x, floor);
 	    mvwaddch(cw, ch_ret.y, ch_ret.x, floor);
 	    attach(th->t_pack, item);
