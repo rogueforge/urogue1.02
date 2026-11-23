@@ -120,7 +120,8 @@
 #define inroom(rp, cp) (\
     (cp)->x <= (rp)->r_pos.x + ((rp)->r_max.x - 1) && (rp)->r_pos.x <= (cp)->x \
  && (cp)->y <= (rp)->r_pos.y + ((rp)->r_max.y - 1) && (rp)->r_pos.y <= (cp)->y)
-#define winat(y, x) (mvwinch(mw, y, x)==' '?mvwinch(stdscr, y, x):winch(mw))
+#define winat(y, x) ((y) < 0 || (y) >= LINES || (x) < 0 || (x) >= COLS ? ' ' : \
+		     mvwinch(mw, y, x)==' '?mvwinch(stdscr, y, x):winch(mw))
 #define debug if (wizard) msg
 #define RN (((seed = seed*11109+13849) & 0x7fff) >> 1)
 #define unc(cp) (cp).y, (cp).x
