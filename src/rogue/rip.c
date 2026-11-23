@@ -357,8 +357,7 @@ short monst;
 	    if (prflags == 1)
 	    {
 		fflush(stdout);
-		fgets(prbuf, LINELEN, stdin);
-		if (prbuf[0] == 'd')
+		if (fgets(prbuf, LINELEN, stdin) != NULL && prbuf[0] == 'd')
 		{
 		    for (sc2 = scp; sc2 < &top_ten[9]; sc2++)
 			*sc2 = *(sc2 + 1);
