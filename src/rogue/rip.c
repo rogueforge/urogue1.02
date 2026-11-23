@@ -41,7 +41,7 @@ char	*killname();
 death(monst)
 register short monst;
 {
-    register char **dp = *rip, *killer; 	/**replace w rip**/
+    register char **dp = rip, *killer; 	/**replace w rip**/
     register struct tm *lt;
     long date;
     char buf[80];
