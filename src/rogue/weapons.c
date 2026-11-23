@@ -187,6 +187,7 @@ fall(item, pr)
 		    traps[ntraps++].tr_pos.x = fpos.x;
 		    if (rp != NULL)
 			rp->r_flags &= ~ISDARK;
+		    discard(item);
 		}
 		else {
 		    mvaddch(fpos.y, fpos.x, obj->o_type) ;
