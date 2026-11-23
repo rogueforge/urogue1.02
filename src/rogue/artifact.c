@@ -1671,7 +1671,7 @@ register struct linked_list *list;
     register struct object *obj;
     register char ch;
     register int n_objs;
-    char inv_temp[LINELEN];
+    char inv_temp[3*LINELEN + 4];
 
     n_objs = 0;
     for (ch = 'a'; list != NULL; ch++, list = next(list)) {
