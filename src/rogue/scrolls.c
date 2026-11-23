@@ -799,7 +799,8 @@ pet_message:	    msg("The dungeon begins to rumble and shake!");
 	buf[0] = '\0';
 	if (get_str(buf, cw) == NORM && buf[0] != '\0')
 	{
-	    s_guess[which] = new(strlen(buf) + 1);
+	    s_guess[which] = new(strlen(buf)
+		< sizeof (struct thing) ? sizeof (struct thing) : strlen(buf) + 1);
 	    strcpy(s_guess[which], buf);
 	}
     }
