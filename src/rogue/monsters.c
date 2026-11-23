@@ -480,7 +480,7 @@ genocide()
     register struct linked_list *nip;
     register int num_monst = NUMMONST-1, pres_monst=1, num_lines=2*(LINES-3);
     register short which_monst;
-    char monst_name[40];
+    char monst_name[LINELEN];
 
     /* Print out the monsters */
     while (num_monst > 0) {

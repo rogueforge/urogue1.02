@@ -168,7 +168,7 @@ int which_item, which_type;
 	struct init_artifact *war;
 	char wmn;
 	int ii;
-	char numstr[20];
+	char numstr[LINELEN];
 
 	mpos = 0;
 	wmi = NULL;
@@ -359,7 +359,7 @@ makemon()
     register int i;
     register short which_monst;
     register int num_monst = NUMMONST+1, pres_monst=1, num_lines=2*(LINES-3);
-    char monst_name[40];
+    char monst_name[LINELEN];
 
     /* Print out the monsters */
     while (num_monst > 0) {
