@@ -125,6 +125,14 @@ gotfile:
 	if (stat(file_name, &sbuf) >= 0 && (sbuf.st_mode & S_IFMT) == S_IFREG)
 	    unlink(file_name);
 	c = open(file_name, O_WRONLY|O_CREAT|O_EXCL, 0400);
+	if (c >= 0 && fstat(c, &sbuf) == 0
+	    && (sbuf.st_uid != getuid() || (sbuf.st_mode & 022) != 0))
+	{
+	    close(c);
+	    unlink(file_name);
+	    c = -1;
+	    errno = EPERM;
+	}
 	if ((savef = c < 0 ? NULL : fdopen(c, "w")) == NULL)
 	    msg(strerror(errno));	/* fake perror() */
     } while (savef == NULL);
