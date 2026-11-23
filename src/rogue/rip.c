@@ -172,7 +172,7 @@ short monst;
     extern int fd_score;
     struct passwd *pp, *getpwuid();
 
-    signal(SIGINT, byebye());
+    signal(SIGINT, byebye);
 #if defined(BSD4)
     (void) TtySetOriginalChars();
 #endif
