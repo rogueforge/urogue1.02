@@ -544,6 +544,9 @@ reg double *avg;
 {
 	FILE * pp;
 	FILE * popen ();
+
+	if (getloadavg(avg, 3) == 3)
+		return;
 	pp = popen (LOADAV_PROG, "r");
 	fscanf (pp, "%lf%lf%lf", &avg[0], &avg[1], &avg[2]);
 	pclose (pp);
