@@ -375,6 +375,9 @@ setup()
 
     signal(SIGHUP, auto_save);
     signal(SIGINT, quit);
+#ifdef SIGXFSZ
+    signal(SIGXFSZ, SIG_IGN);
+#endif
 #if defined(BSD4) && !defined(NCURSES_VERSION)
     signal(SIGTSTP, tstop);
 #endif
@@ -517,8 +520,9 @@ checkout()
 		    unlink(file_name);
 		if (file_name[0] != '\0' 
 			&& (fd = open(file_name, O_WRONLY|O_CREAT|O_EXCL, 0400)) >= 0
-			&& (savef = fdopen(fd, "w")) != NULL)
-		    save_file(savef);
+			&& (savef = fdopen(fd, "w")) != NULL
+			&& !save_file(savef))
+		    unlink(file_name);
 #if defined(BSD4)
 		(void) TtySetOriginalChars();
 #endif
