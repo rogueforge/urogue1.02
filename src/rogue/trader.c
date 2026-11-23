@@ -169,6 +169,7 @@ sell_it()
 	reg struct linked_list *item;
 	reg struct object *obj;
 	reg int wo, ch;
+	char buf[3*LINELEN];
 
 	if (!open_market())		/* after selling hours */
 	    return;
@@ -204,10 +205,11 @@ sell_it()
 	mpos = 0;
 	if (obj->o_type != ARTIFACT)
 	    obj->o_tradevalue = wo;
+	sprintf(buf, "Sold %s.", inv_name(obj,TRUE));
 	if (drop(item) == TRUE) {		/* drop this item */	
 	    purse += wo;			/* give him his money */
 	    ++trader;				/* another transaction */
-	    msg("Sold %s.",inv_name(obj,TRUE));
+	    msg("%s", buf);
 	    trans_line();			/* show remaining deals */
 	}
 }
