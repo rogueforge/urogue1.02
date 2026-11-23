@@ -18,7 +18,7 @@ coord ch_ret;				/* Where chasing takes you */
 
 runners()
 {
-    register struct linked_list *item, *nitem;
+    register struct linked_list *item, *nitem, *ip;
     register struct thing *tp;
 
     for (item = mlist; item != NULL; item = nitem) {
@@ -57,6 +57,16 @@ runners()
 		tp->t_turn ^= TRUE;
 		tp->t_wasshot = FALSE;	/* Not shot anymore */
 	    }
+	}
+
+	for (ip = mlist; ip != NULL && ip != item; ip = next(ip))
+	    continue;
+	if (ip != NULL)
+	    nitem = next(item);
+	else {
+	    for (ip = mlist; ip != NULL && ip != nitem; ip = next(ip))
+		continue;
+	    nitem = ip;
 	}
     }
 }
