@@ -35,6 +35,8 @@
      /*
       * Free up the monsters on the last level
       */
+     for (item = mlist; item != NULL; item = next(item))
+ 	free_list(((struct thing *) ldata(item))->t_pack);
      free_list(mlist);
      free_list(lvl_obj);		/* Free up previous objects (if any) */
      levtype = ltype;

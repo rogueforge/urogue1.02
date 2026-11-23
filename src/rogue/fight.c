@@ -1274,6 +1274,7 @@ register struct linked_list *item;
 {
     mvwaddch(mw, mp->y, mp->x, ' ');
     mvwaddch(cw, mp->y, mp->x, ((struct thing *) ldata(item))->t_oldch);
+    free_list(((struct thing *) ldata(item))->t_pack);
     detach(mlist, item);
     discard(item);
     monst_dead = TRUE;
@@ -1347,6 +1348,7 @@ bool pr, points;
      * Empty the monsters pack
      */
     pitem = tp->t_pack;
+    tp->t_pack = NULL;
     pos = tp->t_pos;
 
     /*
