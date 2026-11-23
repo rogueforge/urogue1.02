@@ -3,6 +3,7 @@
  *
  */
 #include "../tunable.h"
+#include <stdarg.h>
 
 /*
  * Maximum number of different things
@@ -916,6 +917,8 @@ char *ctime(), *num(), *ring_num(), *blesscurse(), *typ_name();
 struct room *roomin();
 
 coord *rndmove(), *can_shoot();
+
+int msg(char *fmt, ...), addmsg(char *fmt, ...);
 
 short randmonster(), id_monst();
 
