@@ -286,9 +286,11 @@ struct magic_item ws_magic[MAXSTICKS] = {
     { "blasting",		 10, 220, 0, 0},
 };
 
+static char fruit_name[LINELEN] = "fruit-with-very-long-name";
+
 struct magic_item fd_data[MAXFOODS] = {
     { "food ration",					400, 2, 20, 20 },
-    { "fruit-with-very-long-name",			300, 1, 0, 0 },
+    { fruit_name,					300, 1, 0, 0 },
     { "cram",						120, 3, 0, 0 },
     { "honey cake",					 80, 10, 0, 0 },
     { "lemba",						 50, 50, 0, 0 },
