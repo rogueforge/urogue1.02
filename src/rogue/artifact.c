@@ -1694,7 +1694,7 @@ register struct linked_list *list;
 	return;
     }
     if (n_objs == 1) {
-	msg(inv_temp);
+	msg("%s", inv_temp);
 	return;
     }
     mvwaddstr(hw, LINES-1, 0, spacemsg);
