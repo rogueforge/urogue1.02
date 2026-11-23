@@ -87,7 +87,7 @@ missile(ydelta, xdelta, item, tp)
 	    }
 	    else if (obj->o_flags & ISLOST) {
 		if (obj->o_type == WEAPON)
-		    addmsg("The %s", weaps[obj->o_which]);
+		    addmsg("The %s", weaps[obj->o_which].w_name);
 		else
 		    addmsg(inv_name(obj, TRUE));
 		msg(" vanishes in a puff of greasy smoke.");
@@ -196,7 +196,7 @@ fall(item, pr)
 	}
 	if (pr) {
 		if (obj->o_type == WEAPON)
-			addmsg("The %s", weaps[obj->o_which]);
+			addmsg("The %s", weaps[obj->o_which].w_name);
 		else
 			addmsg(inv_name(obj, TRUE));
 		msg(" vanishes as it hits the ground.");
