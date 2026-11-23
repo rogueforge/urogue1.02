@@ -551,9 +551,7 @@ char *howso;
 
 void byebye()
 {
-    extern bool _endwin;
-
-    if (!_endwin) {
+    if (!isendwin()) {
         clear();
 	endwin();
     }
