@@ -115,7 +115,7 @@ register struct thing *flgptr;
 	     * If it is a scroll, it might be a scare monster scroll
 	     * so we need to look it up to see what type it is.
 	     */
-	    if (flgptr || flgptr->t_ctype == C_MONSTER) {
+	    if (flgptr == NULL || flgptr->t_ctype == C_MONSTER) {
 		item = find_obj(y, x);
 		if (item != NULL &&
 		    (OBJPTR(item))->o_which==S_SCARE &&
