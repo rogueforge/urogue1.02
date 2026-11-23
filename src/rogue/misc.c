@@ -290,12 +290,16 @@ eat()
     register struct linked_list *item;
     register struct object *obj;
     register int amount;
+    int which;
+    long flags;
 
     if ((item = get_item("eat", FOOD)) == NULL)
 	return;
     obj = (struct object *) ldata(item);
+    which = obj->o_which;
+    flags = obj->o_flags;
     del_pack(item);
-    switch (obj->o_which) {
+    switch (which) {
 	when FD_RATION:
 	    amount = HUNGERTIME + rnd(400) - 200;
 	    if (rnd(100) > 70) {
@@ -326,7 +330,7 @@ eat()
 	    amount = HUNGERTIME;
     }
     food_left += amount;
-    if (obj->o_flags & ISBLESSED) {
+    if (flags & ISBLESSED) {
 	food_left += 2 * amount;
 	msg("You have a tingling feeling in your mouth.");
     }
