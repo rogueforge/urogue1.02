@@ -105,6 +105,8 @@ missile(ydelta, xdelta, item, tp)
 		add_pack(item, TRUE);
 		msg("You have %s.", inv_name(obj, TRUE));
 	}
+	else
+		discard(item) ;
 	mvwaddch(cw, hero.y, hero.x, PLAYER) ;
 }
 
