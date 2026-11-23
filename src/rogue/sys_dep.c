@@ -463,9 +463,9 @@ TtyMapGameChars()
   GameLtchars.t_werasc = -1;
   GameLtchars.t_lnextc = -1;
 
-  GameTchars.t_quitc = CTRL(\\);
-  GameTchars.t_startc = CTRL(Q);
-  GameTchars.t_stopc = CTRL(S);
+  GameTchars.t_quitc = CTRL('\\');
+  GameTchars.t_startc = CTRL('Q');
+  GameTchars.t_stopc = CTRL('S');
   GameTchars.t_eofc = -1;
   GameTchars.t_brkc = -1;
 

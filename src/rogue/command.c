@@ -125,8 +125,8 @@ command()
 		    case 'q': case 'r': case 's': case 'm':
 		    case 't': case 'C': case 'I': case '.':
 		    case 'z': case 'p':
-		    case CTRL(K): case CTRL(L): case CTRL(H): case CTRL(J): 
-		    case CTRL(Y): case CTRL(U): case CTRL(B): case CTRL(N):
+		    case CTRL('K'): case CTRL('L'): case CTRL('H'): case CTRL('J'): 
+		    case CTRL('Y'): case CTRL('U'): case CTRL('B'): case CTRL('N'):
 			break;
 		    default:
 			count = 0;
@@ -144,8 +144,8 @@ command()
 		case 'Y': case 'U': case 'B': case 'N':
 		    runch = tolower(ch);
 		    break;
-		case CTRL(H): case CTRL(J): case CTRL(K): case CTRL(L):
-	        case CTRL(Y): case CTRL(U): case CTRL(B): case CTRL(N):
+		case CTRL('H'): case CTRL('J'): case CTRL('K'): case CTRL('L'):
+	        case CTRL('Y'): case CTRL('U'): case CTRL('B'): case CTRL('N'):
 #define UNCTRL(x)	((x) + 'A' - 1)
 		    ch = UNCTRL(ch);
 #undef	UNCTRL
@@ -229,7 +229,7 @@ command()
 		when '<' : after = FALSE; u_level();
 		when '?' : after = FALSE; help();
 		when '/' : after = FALSE; identify();
-		when CTRL(T) :
+		when CTRL('T') :
 		    if (get_dir()) steal();
 		    else after = FALSE;
 		when 'D' : dip_it();
@@ -250,9 +250,9 @@ command()
 		when 'v' : after = FALSE;
 			   msg("UltraRogue Version %s.",
 				release);
-		when CTRL(R) : after = FALSE; clearok(curscr, TRUE);
+		when CTRL('R') : after = FALSE; clearok(curscr, TRUE);
 				touchwin(cw); /* MMMMMMMMMM */
-		when CTRL(P) : {
+		when CTRL('P') : {
 			    register bool decrement = FALSE;
 
 			    after = FALSE; 
@@ -277,7 +277,7 @@ command()
 		    }
 		when '.' : ;			/* Rest command */
 		when ' ' : after = FALSE;	/* Do Nothing */
-		when CTRL(W) :
+		when CTRL('W') :
 		    after = FALSE;
 		    if (wizard)
 		    {
@@ -320,18 +320,18 @@ command()
 		    after = FALSE;
 		    if (wizard) switch (ch)
 		    {
-			when CTRL(V) : create_obj(0, 0, FALSE);
-			when CTRL(I) : inventory(lvl_obj, 0);
-			when CTRL(Z) : whatis(NULL);
-			when CTRL(D) : msg("rnd(4)%d, rnd(40)%d, rnd(100)%d",
+			when CTRL('V') : create_obj(0, 0, FALSE);
+			when CTRL('I') : inventory(lvl_obj, 0);
+			when CTRL('Z') : whatis(NULL);
+			when CTRL('D') : msg("rnd(4)%d, rnd(40)%d, rnd(100)%d",
 						rnd(4),rnd(40),rnd(100));
-			when CTRL(F) : overlay(stdscr,cw);
-			when CTRL(M) : overlay(mw,cw);
-			when CTRL(X) : teleport();
-			when CTRL(E) : msg("food left: %d\tfood level: %d", 
+			when CTRL('F') : overlay(stdscr,cw);
+			when CTRL('M') : overlay(mw,cw);
+			when CTRL('X') : teleport();
+			when CTRL('E') : msg("food left: %d\tfood level: %d", 
 						food_left, foodlev);
 			when '@' : activity();
-			when CTRL(G) : 
+			when CTRL('G') : 
 			{
 			    int tlev;
 			    prbuf[0] = NULL;
@@ -361,7 +361,7 @@ command()
 				new_level(levtype);
 			    }
 			}
-			when CTRL(C) :
+			when CTRL('C') :
 			{
 			    register struct linked_list *item;
 
@@ -376,7 +376,7 @@ command()
 				msg("Worth %d.", 
 				    get_worth(((struct object *)ldata(item))));
 			}
-			when CTRL(O) :
+			when CTRL('O') :
 			{
 			    register int i;
 			    register struct linked_list *item;

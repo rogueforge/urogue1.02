@@ -136,9 +136,8 @@
     ((thing).t_flags[(flag >> FLAGSHIFT) & FLAGINDEX] |= (flag & ~FLAGMASK))
 #define turn_off(thing, flag) \
     ((thing).t_flags[(flag >> FLAGSHIFT) & FLAGINDEX] &= ~flag)
-#ifndef	CTRL
-#define CTRL(ch) ('ch' & 037)
-#endif
+#undef	CTRL
+#define CTRL(ch) (ch & 037)
 #define ALLOC(x) malloc((unsigned int) x)
 #define FREE(x) cfree((char *) x)
 #define	EQSTR(a, b, c)	(strncmp(a, b, c) == 0)
