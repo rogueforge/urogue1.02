@@ -1,5 +1,8 @@
 #include "curses.h"
 #include "rogue.h"
+#undef malloc
+#undef free
+#include <stdlib.h>
   
 struct cell {
   int y_pos;
