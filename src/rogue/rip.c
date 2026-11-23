@@ -173,6 +173,7 @@ short monst;
     struct passwd *pp, *getpwuid();
 
     signal(SIGINT, byebye);
+    file_name[0] = '\0';
 #if defined(BSD4)
     (void) TtySetOriginalChars();
 #endif
@@ -377,6 +378,7 @@ total_winner()
     register char c;
     struct linked_list *bag = NULL;
 
+    file_name[0] = '\0';
     clear();
     standout();
     addstr("                                                               \n");
