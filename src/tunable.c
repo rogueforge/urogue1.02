@@ -26,7 +26,11 @@ char	PASSCTL[]	=	ROGUEPATH(passctl);
 /*
  * Directory where the scores are stored.
  */
+#ifdef SCOREFILE
+char	SCOREDIR[]	=	SCOREFILE;
+#else
 char	SCOREDIR[]	=	ROGUEPATH(urogue_roll);
+#endif
 
 /*
  * Location of lav program to print load averages
