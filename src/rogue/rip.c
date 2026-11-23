@@ -312,6 +312,10 @@ short monst;
     for (scp = top_ten; scp < &top_ten[10]; scp++) {
 
 	if (scp->sc_score) {
+	    scp->sc_name[75] = '\0';
+	    for (i = 0; scp->sc_name[i] != '\0'; i++)
+		if (scp->sc_name[i] < ' ' || scp->sc_name[i] > '~')
+		    scp->sc_name[i] = '?';
 	    printf("%d\t%ld\t%ld\t%s:\n", (int) (scp - top_ten) + 1,
 		scp->sc_score, scp->sc_gold, scp->sc_name);
 	    if (scp->sc_artifacts) {
