@@ -907,9 +907,9 @@ struct linked_list *new_thing(), *wake_monster(), *get_hurl(), *spec_item();
 struct object *wield_weap();
 
 #ifndef	unctrl
-char *malloc(), *getenv(), *unctrl(), *tr_name(), *new(), *sprintf();
+char *malloc(), *getenv(), *unctrl(), *tr_name(), *new();
 #else
-char *malloc(), *getenv(), *tr_name(), *new(), *sprintf();
+char *malloc(), *getenv(), *tr_name(), *new();
 #endif
 char *vowelstr(), *inv_name(), *strcpy(), *strcat(), *sbrk(), *brk();
 char *ctime(), *num(), *ring_num(), *blesscurse(), *typ_name();
