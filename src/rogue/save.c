@@ -13,6 +13,7 @@
 #include <fcntl.h>
 #include <signal.h>
 #include "rogue.h"
+#include "mach_dep.h"
 
 typedef struct stat STAT;
 
@@ -349,7 +350,7 @@ char **envp;
     setup();
     clearok(curscr, TRUE);
     touchwin(cw);
-    srand(getpid());
+    srand48(getpid());
     playit();
     /*NOTREACHED*/
 }
