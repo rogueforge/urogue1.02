@@ -766,6 +766,8 @@ bool thrown;
 		    {
 			msg("She stole %s!", inv_name(obj, TRUE));
 			obj->o_flags &= ~ISCURSED;
+			if (obj == cur_armor)
+			    cur_armor = NULL;
 			dropcheck(obj);
 			detach(pack, steal);
 			freeletter(steal);
